@@ -1,12 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ThemeProvider, theme  } from "@chakra-ui/core";
+import reportWebVitals from './utils/reportWebVitals';
+
+//Global Sections
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+const tmiTheme = {
+  ...theme,
+  colors:{
+    ...theme.colors,
+    primary: {
+      50: '#e4f8f5',
+      100: '#cae3df',
+      200: '#adcfca',
+      300: '#90bcb4',
+      400: '#72a99f',
+      500: '#588f86',
+      600: '#436f68',
+      700: '#2e504a',
+      800: '#18312d',
+      900: '#001310',
+    }
+  }
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={tmiTheme}>
+      <App />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
