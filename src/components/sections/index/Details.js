@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import { Box, Heading, Text, Flex, Link } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
@@ -21,7 +21,7 @@ function Feature({ title, desc, img, href, ...rest }) {
         >
             <Link href={href} color="black">
                 <div align="center">
-                <img src="/logo192.png" alt="Placeholder logo"/>
+                    <img src="/logo192.png" alt="Placeholder logo" />
                 </div>
                 <Heading fontSize="xl">{title}</Heading>
                 <Text mt={4}>{desc}</Text>
@@ -33,9 +33,9 @@ function Feature({ title, desc, img, href, ...rest }) {
 export default function Details(props) {
     return (
         <Flex
-        direction={{ base: "column", md: "row" }}
-        w={{ base: "80%", md: "100%", lg: "80%" }}
-        m={10}
+            direction={{ base: "column", md: "row" }}
+            w={{ base: "80%", md: "100%", lg: "80%" }}
+            m={10}
         >
             <Feature
                 title="Add a Mini"
