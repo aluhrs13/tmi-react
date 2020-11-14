@@ -8,6 +8,7 @@ import {
     Link,
     SimpleGrid,
     Skeleton,
+    Center,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
@@ -30,29 +31,29 @@ function GalleryItem({ id, name, status, creator, thumbnail, link, ...rest }) {
             bg="white"
             shadow="md"
             borderWidth="1px"
-            align="center"
-            p={4}
             rounded="lg"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.9 }}
             {...rest}
         >
             <Link href={link} color="black">
-                <div align="center">
+                <Center>
                     <Image
-                        width="314px"
-                        height="236px"
                         src={fixCDN(thumbnail)}
                         className="galleryCard"
                         alt="User supplied image of this model"
-                        loading="lazy"
+                        fit="cover"
                     />
-                </div>
+                </Center>
             </Link>
-            <Heading fontSize="xl">{name}</Heading>
-            <Text my={1}>
-                by <Link>{creator}</Link>
-            </Text>
+            <Box mx={4} my={2}>
+                <Heading fontSize="xl" lineHeight="1">
+                    {name}
+                </Heading>
+                <Text my={1}>
+                    by <Link>{creator}</Link>
+                </Text>
+            </Box>
         </MotionBox>
     );
 }
@@ -61,36 +62,20 @@ function SkeletonGrid(size) {
     return Array(size)
         .fill()
         .map((item, index) => (
-            <MotionBox
-                key={index}
-                bg="white"
-                shadow="md"
-                borderWidth="1px"
-                align="center"
-                p={4}
-                rounded="lg"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.9 }}
-            >
-                <Skeleton>
-                    <div align="center">
-                        <Box
-                            width="314px"
-                            height="236px"
-                            className="galleryCard"
-                            rounded="lg"
-                        />
-                    </div>
-                </Skeleton>
+            <Box bg="white" shadow="md" borderWidth="1px" rounded="lg" w="100%">
+                <Center>
+                    <Skeleton h="236px" w="100%"></Skeleton>
+                </Center>
 
-                <Skeleton>
-                    <Heading fontSize="xl">Thing</Heading>
+                <Skeleton mx={4} my={2}>
+                    <Heading fontSize="xl" lineHeight="1">
+                        Name
+                    </Heading>
                 </Skeleton>
-
-                <Skeleton>
+                <Skeleton mx={4} my={2}>
                     <Text my={1}>by Person</Text>
                 </Skeleton>
-            </MotionBox>
+            </Box>
         ));
 }
 
@@ -119,9 +104,9 @@ export default function Gallery(props) {
             p={8}
         >
             <SimpleGrid
-                columns={{ base: "1", md: "2", lg: "3" }}
+                columns={{ base: "2", md: "3", lg: "4", xl: "5" }}
                 spacing={8}
-                align="center"
+                w={{ base: "100%", xl: "1800px" }}
             >
                 {props.gridData === "" ? (
                     SkeletonGrid(21)
