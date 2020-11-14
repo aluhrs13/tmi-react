@@ -38,7 +38,11 @@ export default class BrowseLayout extends React.Component {
 
     axios.get(baseUrl)
       .then(({ data }) => {
-          this.setState({gridData:data});
+          if(this.state.page>1){
+            this.setState({gridData:this.state.gridData.concat(data)})
+          }else{
+            this.setState({gridData:data});
+          }
       })
   }
   
@@ -64,26 +68,30 @@ export default class BrowseLayout extends React.Component {
     const query=this.state.query;
 
     return(
-      <>
-        <Header />
-          <Flex
-          direction={{ base: "column", lg: "column" }}
-          align="top"
-          justify="center"
-        >
-          <Search
-            w={{ base: "100%"}}
-            query={query}
-            onSearchChange={this.SubmitForm}
-          />
-          <Gallery
-            w={{ base: "100%", lg: "80%" }}
-            gridData={this.state.gridData}
-          />
-          <Button onClick={this.PageUp}/>
-        </Flex>
-        <Footer />
-      </>
+        <>
+            <Header />
+            <Flex
+                direction={{ base: "column", lg: "column" }}
+                align="top"
+                justify="center"
+            >
+                <Search
+                    w={{ base: "100%"}}
+                    query={query}
+                    onSearchChange={this.SubmitForm}
+                />
+                <Gallery
+                    w={{ base: "100%", lg: "80%" }}
+                    gridData={this.state.gridData}
+                />
+                <div align="center">
+                    <Button onClick={this.PageUp} m={4} w={"80%"}>
+                        Load more...
+                    </Button>
+                </div>
+            </Flex>
+            <Footer />
+        </>
     )
   }
 }

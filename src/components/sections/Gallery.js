@@ -27,7 +27,7 @@ function GalleryItem({ id, name, status, creator, thumbnail, link, ...rest }) {
         >
             <Link href={link} color="black">
                 <div align="center">
-                    <Image width="314px" height="236px" src={fixCDN(thumbnail)} className="galleryCard" alt="User supplied image of this model"/>
+                    <Image width="314px" height="236px" src={fixCDN(thumbnail)} className="galleryCard" alt="User supplied image of this model" loading="lazy"/>
                 </div>
             </Link>
             <Heading fontSize="xl">{name}</Heading>
