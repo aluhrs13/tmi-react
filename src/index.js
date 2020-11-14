@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider, theme  } from "@chakra-ui/core";
+import { ChakraProvider, theme  } from "@chakra-ui/react";
 import reportWebVitals from './utils/reportWebVitals';
 
 //Global Sections
@@ -28,9 +28,9 @@ const tmiTheme = {
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={tmiTheme}>
+    <ChakraProvider theme={tmiTheme}>
       <App />
-    </ThemeProvider>
+    </ChakraProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Heading, Text, Flex, Link } from "@chakra-ui/core";
+import { Box, Heading, Text, Flex, Link } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
 const MotionBox = motion.custom(Box);

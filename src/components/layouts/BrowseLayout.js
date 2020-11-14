@@ -1,5 +1,5 @@
 import React from "react"
-import { Flex, Button } from "@chakra-ui/core"
+import { Flex, Button } from "@chakra-ui/react"
 import axios from "axios"
 
 //Global Sections

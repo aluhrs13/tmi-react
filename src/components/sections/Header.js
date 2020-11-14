@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../ui/Logo";
 import LogoType from "../ui/LogoType";
-import { Box, Flex, Link, Button } from "@chakra-ui/core";
+import { Box, Flex, Link, Button } from "@chakra-ui/react";
 
 const MenuItems = props =>{
   return(
@@ -34,7 +34,7 @@ const Header = props => {
     >
       <Flex align="center" mr={5}>
         <Link href="/index">
-          <Logo height="40px"/>
+          <Logo height="40px" width="40px"/>
         </Link>
         <LogoType />
       </Flex>

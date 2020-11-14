@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Stack, Box, Heading, Input, IconButton } from "@chakra-ui/core";
+import { Stack, Box, Heading, Input, Button } from "@chakra-ui/react"
 
 export default class Search extends Component{
     constructor(props){
@@ -32,7 +32,7 @@ export default class Search extends Component{
                                 width="80%"
                                 placeholder="Search"
                             />
-                            <IconButton bg="primary.800" color="white" border="0px" aria-label="Search database" icon="search" type="submit" />
+                            <Button bg="primary.800" color="white" border="0px" icon="search" type="submit">Search</Button>
                         </Stack>
                     </form>
             </Box>

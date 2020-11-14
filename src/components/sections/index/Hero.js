@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Box, Button, Heading, Stack} from "@chakra-ui/core"
+import { Box, Button, Heading, Stack} from "@chakra-ui/react"
 
 export default function Hero({
   title,
