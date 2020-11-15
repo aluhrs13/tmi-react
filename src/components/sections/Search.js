@@ -24,6 +24,7 @@ export default class Search extends Component {
                             ref={(input) => (this.search = input)}
                             width="80%"
                             placeholder="Search"
+                            bg="white"
                         />
                         <Button
                             bg="primary.800"

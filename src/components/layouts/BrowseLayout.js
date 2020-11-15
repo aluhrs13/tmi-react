@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Button } from "@chakra-ui/react";
+import { Flex, Button, Spinner, Center } from "@chakra-ui/react";
 import axios from "axios";
 
 //Global Sections
@@ -19,6 +19,7 @@ export default class BrowseLayout extends React.Component {
             gridData: "",
             query: "",
             page: 1,
+            loadingNewPage: false,
         };
     }
 
@@ -30,6 +31,8 @@ export default class BrowseLayout extends React.Component {
     //Make a request to get the browse data
     GetResults() {
         var baseUrl = `https://theminiindex.com/api/minis/search?pageIndex=${this.state.page}`;
+        this.setState({ loadingNewPage: true });
+
         //var baseUrl = `https://localhost:44386/api/minis/search?pageIndex=${page}`;
 
         if (this.state.query) {
@@ -42,6 +45,7 @@ export default class BrowseLayout extends React.Component {
             } else {
                 this.setState({ gridData: data });
             }
+            this.setState({ loadingNewPage: false });
         });
     }
 
@@ -84,11 +88,16 @@ export default class BrowseLayout extends React.Component {
                         w={{ base: "100%", lg: "80%" }}
                         gridData={this.state.gridData}
                     />
-                    <div align="center">
-                        <Button onClick={this.PageUp} m={4} w={"80%"}>
-                            Load more...
-                        </Button>
-                    </div>
+                    <Center>
+                        {this.state.loadingNewPage && (
+                            <Spinner size="xl" m={8} color="primary.500" />
+                        )}
+                        {!this.state.loadingNewPage && (
+                            <Button onClick={this.PageUp} m={4} w={"80%"}>
+                                Load more...
+                            </Button>
+                        )}
+                    </Center>
                 </Flex>
                 <Footer />
             </>

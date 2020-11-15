@@ -25,37 +25,53 @@ function fixCDN(thumbnail) {
     }
 }
 
-function GalleryItem({ id, name, status, creator, thumbnail, link, ...rest }) {
-    return (
-        <MotionBox
-            bg="white"
-            shadow="md"
-            borderWidth="1px"
-            rounded="lg"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.9 }}
-            {...rest}
-        >
-            <Link href={link} color="black">
-                <Center>
-                    <Image
-                        src={fixCDN(thumbnail)}
-                        className="galleryCard"
-                        alt="User supplied image of this model"
-                        fit="cover"
-                    />
-                </Center>
-            </Link>
-            <Box mx={4} my={2}>
-                <Heading fontSize="xl" lineHeight="1">
-                    {name}
-                </Heading>
-                <Text my={1}>
-                    by <Link>{creator}</Link>
-                </Text>
-            </Box>
-        </MotionBox>
-    );
+class GalleryItem extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true,
+        };
+    }
+
+    render() {
+        return (
+            <MotionBox
+                bg="white"
+                shadow="md"
+                borderWidth="1px"
+                rounded="lg"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.9 }}
+            >
+                <Link href={this.props.link} color="black">
+                    <Center>
+                        <Image
+                            src={fixCDN(this.props.thumbnail)}
+                            className="galleryCard"
+                            alt="User supplied image of this model"
+                            fit="cover"
+                            display={this.state.loading ? "none" : "block"}
+                            onLoad={() => {
+                                console.log("Loaded!");
+                                this.setState({ loading: false });
+                            }}
+                        />
+                        {this.state.loading && (
+                            <Skeleton h="236px" w="100%"></Skeleton>
+                        )}
+                    </Center>
+                </Link>
+                <Box mx={4} my={2}>
+                    <Heading fontSize="xl" lineHeight="1">
+                        {this.props.name}
+                    </Heading>
+                    <Text my={1}>
+                        by <Link>{this.props.creator}</Link>
+                    </Text>
+                </Box>
+            </MotionBox>
+        );
+    }
 }
 
 function SkeletonGrid(size) {
