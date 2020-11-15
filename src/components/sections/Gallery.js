@@ -28,6 +28,15 @@ function fixCDN(thumbnail) {
 class GalleryItem extends React.Component {
     constructor(props) {
         super(props);
+
+        var urlParts = this.props.link
+            .replace("http://", "")
+            .replace("https://", "")
+            .split(/[/?#]/)[0]
+            .split(".");
+
+        this.sourceSite = urlParts[urlParts.length - 2];
+
         this.state = {
             loading: true,
         };
@@ -43,22 +52,27 @@ class GalleryItem extends React.Component {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.9 }}
             >
-                <Link href={this.props.link} color="black">
+                <Link href={"/minis/view/" + this.props.id} color="black">
                     <Center>
-                        <Image
-                            src={fixCDN(this.props.thumbnail)}
-                            className="galleryCard"
-                            alt="User supplied image of this model"
-                            maxH="256px"
-                            fit="cover"
-                            display={this.state.loading ? "none" : "block"}
-                            onLoad={() => {
-                                this.setState({ loading: false });
-                            }}
-                        />
-                        {this.state.loading && (
-                            <Skeleton h="256px" w="100%"></Skeleton>
-                        )}
+                        <Skeleton
+                            h="256px"
+                            w="100%"
+                            startColor={"sourceSites." + this.sourceSite}
+                            endColor="gray.900"
+                            isLoaded={!this.state.loading}
+                        >
+                            <Image
+                                src={fixCDN(this.props.thumbnail)}
+                                className="galleryCard"
+                                alt={
+                                    "User supplied image of " + this.props.name
+                                }
+                                fit="cover"
+                                onLoad={() => {
+                                    this.setState({ loading: false });
+                                }}
+                            />
+                        </Skeleton>
                     </Center>
                 </Link>
                 <Box mx={4} my={2}>
@@ -66,7 +80,10 @@ class GalleryItem extends React.Component {
                         {this.props.name}
                     </Heading>
                     <Text my={1}>
-                        by <Link>{this.props.creator}</Link>
+                        by{" "}
+                        <Link href={"/creators/view/" + this.props.creator.id}>
+                            {this.props.creator}
+                        </Link>
                     </Text>
                 </Box>
             </MotionBox>
@@ -80,7 +97,7 @@ function SkeletonGrid(size) {
         .map((item, index) => (
             <Box bg="white" shadow="md" borderWidth="1px" rounded="lg" w="100%">
                 <Center>
-                    <Skeleton h="236px" w="100%"></Skeleton>
+                    <Skeleton h="256px" w="100%"></Skeleton>
                 </Center>
 
                 <Skeleton mx={4} my={2}>
@@ -112,7 +129,7 @@ function GalleryData({ data }) {
 }
 
 export default function Gallery(props) {
-    return Array.isArray(props.gridData) && props.gridData.length > 0 ? (
+    return (
         <Flex direction={{ base: "column", md: "row" }} w="100%">
             <SimpleGrid
                 columns={{ base: "1", sm: "2", md: "3", lg: "4", xl: "5" }}
@@ -126,7 +143,5 @@ export default function Gallery(props) {
                 )}
             </SimpleGrid>
         </Flex>
-    ) : (
-        <Flex />
     );
 }

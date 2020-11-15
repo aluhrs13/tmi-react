@@ -23,6 +23,18 @@ const tmiTheme = {
             800: "#18312d",
             900: "#001310",
         },
+        sourceSites: {
+            thingiverse: "#3F8CFE",
+            patreon: "#E85B46",
+            myminifactory: "#3fbc9c",
+            shapeways: "#FF4B5A",
+            gumroad: "#198C8C",
+            cults3d: "#822ef5",
+            wargaming3d: "#41533b",
+            duncanshadow: "#4E2B07",
+            prusaprinters: "#fa6831",
+            atelierstoria: "#5F7E23",
+        },
     },
 };
 
