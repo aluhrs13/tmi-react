@@ -49,20 +49,20 @@ class GalleryItem extends React.Component {
                             src={fixCDN(this.props.thumbnail)}
                             className="galleryCard"
                             alt="User supplied image of this model"
+                            maxH="256px"
                             fit="cover"
                             display={this.state.loading ? "none" : "block"}
                             onLoad={() => {
-                                console.log("Loaded!");
                                 this.setState({ loading: false });
                             }}
                         />
                         {this.state.loading && (
-                            <Skeleton h="236px" w="100%"></Skeleton>
+                            <Skeleton h="256px" w="100%"></Skeleton>
                         )}
                     </Center>
                 </Link>
                 <Box mx={4} my={2}>
-                    <Heading fontSize="xl" lineHeight="1">
+                    <Heading fontSize="l" lineHeight="1">
                         {this.props.name}
                     </Heading>
                     <Text my={1}>
@@ -112,15 +112,10 @@ function GalleryData({ data }) {
 }
 
 export default function Gallery(props) {
-    return (
-        <Flex
-            justify="center"
-            bg="primary.50"
-            direction={{ base: "column", md: "row" }}
-            p={8}
-        >
+    return Array.isArray(props.gridData) && props.gridData.length > 0 ? (
+        <Flex direction={{ base: "column", md: "row" }} w="100%">
             <SimpleGrid
-                columns={{ base: "2", md: "3", lg: "4", xl: "5" }}
+                columns={{ base: "1", sm: "2", md: "3", lg: "4", xl: "5" }}
                 spacing={8}
                 w={{ base: "100%", xl: "1800px" }}
             >
@@ -131,5 +126,7 @@ export default function Gallery(props) {
                 )}
             </SimpleGrid>
         </Flex>
+    ) : (
+        <Flex />
     );
 }

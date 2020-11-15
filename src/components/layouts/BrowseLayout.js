@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Button, Spinner, Center } from "@chakra-ui/react";
+import { Flex, Center } from "@chakra-ui/react";
 import axios from "axios";
 
 //Global Sections
@@ -9,6 +9,7 @@ import Footer from "../sections/Footer";
 //Local Sections
 import Gallery from "../sections/Gallery";
 import Search from "../sections/Search";
+import LoadingButton from "../ui/LoadingButton";
 
 export default class BrowseLayout extends React.Component {
     constructor(props) {
@@ -17,9 +18,10 @@ export default class BrowseLayout extends React.Component {
         this.PageUp = this.PageUp.bind(this);
         this.state = {
             gridData: "",
+            numResults: "",
             query: "",
             page: 1,
-            loadingNewPage: false,
+            loadingNewPage: true,
         };
     }
 
@@ -31,8 +33,6 @@ export default class BrowseLayout extends React.Component {
     //Make a request to get the browse data
     GetResults() {
         var baseUrl = `https://theminiindex.com/api/minis/search?pageIndex=${this.state.page}`;
-        this.setState({ loadingNewPage: true });
-
         //var baseUrl = `https://localhost:44386/api/minis/search?pageIndex=${page}`;
 
         if (this.state.query) {
@@ -41,9 +41,12 @@ export default class BrowseLayout extends React.Component {
 
         axios.get(baseUrl).then(({ data }) => {
             if (this.state.page > 1) {
-                this.setState({ gridData: this.state.gridData.concat(data) });
+                this.setState({
+                    gridData: this.state.gridData.concat(data),
+                    numResults: data.length,
+                });
             } else {
-                this.setState({ gridData: data });
+                this.setState({ gridData: data, numResults: data.length });
             }
             this.setState({ loadingNewPage: false });
         });
@@ -55,6 +58,7 @@ export default class BrowseLayout extends React.Component {
                 query: newSearch,
                 page: 1,
                 gridData: "",
+                loadingNewPage: true,
             },
             function () {
                 this.GetResults();
@@ -63,14 +67,17 @@ export default class BrowseLayout extends React.Component {
     }
 
     PageUp() {
-        this.setState({ page: parseInt(this.state.page) + 1 }, function () {
-            this.GetResults();
-        });
+        this.setState(
+            { page: parseInt(this.state.page) + 1, loadingNewPage: true },
+            function () {
+                this.GetResults();
+            }
+        );
     }
 
     render() {
         const query = this.state.query;
-
+        console.log(this.state.numResults);
         return (
             <>
                 <Header />
@@ -84,20 +91,26 @@ export default class BrowseLayout extends React.Component {
                         query={query}
                         onSearchChange={this.SubmitForm}
                     />
-                    <Gallery
-                        w={{ base: "100%", lg: "80%" }}
-                        gridData={this.state.gridData}
-                    />
-                    <Center>
-                        {this.state.loadingNewPage && (
-                            <Spinner size="xl" m={8} color="primary.500" />
-                        )}
-                        {!this.state.loadingNewPage && (
-                            <Button onClick={this.PageUp} m={4} w={"80%"}>
-                                Load more...
-                            </Button>
-                        )}
-                    </Center>
+
+                    <Flex
+                        justify="center"
+                        bg="primary.50"
+                        direction="column"
+                        w="100%"
+                        p={8}
+                    >
+                        <Gallery
+                            w={{ base: "100%", lg: "80%" }}
+                            gridData={this.state.gridData}
+                        />
+                        <Center>
+                            <LoadingButton
+                                isLoading={this.state.loadingNewPage}
+                                numResults={this.state.numResults}
+                                pageUp={this.PageUp}
+                            />
+                        </Center>
+                    </Flex>
                 </Flex>
                 <Footer />
             </>
