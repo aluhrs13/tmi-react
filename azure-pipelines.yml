@@ -23,6 +23,7 @@ steps:
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
+    azureSubscription: 'Visual Studio Enterprise(16758abf-e59d-4f8d-b6cf-fa52a4cbb088)'
     appType: 'webAppLinux'
     WebAppName: 'tmireact'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
