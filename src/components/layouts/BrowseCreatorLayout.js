@@ -7,19 +7,16 @@ import Header from "../sections/Header";
 import Footer from "../sections/Footer";
 
 //Local Sections
-import Gallery from "../sections/Gallery";
-import Search from "../sections/Search";
+import CreatorGallery from "../sections/CreatorGallery";
 import LoadingButton from "../ui/LoadingButton";
 
-export default class BrowseLayout extends React.Component {
+export default class BrowseCreatorLayout extends React.Component {
     constructor(props) {
         super(props);
-        this.SubmitForm = this.SubmitForm.bind(this);
         this.PageUp = this.PageUp.bind(this);
         this.state = {
             gridData: "",
             numResults: "",
-            query: "",
             page: 1,
             loadingNewPage: true,
         };
@@ -32,14 +29,11 @@ export default class BrowseLayout extends React.Component {
 
     //Make a request to get the browse data
     GetResults() {
-        var baseUrl = `https://theminiindex.com/api/minis/search?pageIndex=${this.state.page}`;
-        //var baseUrl = `https://localhost:44386/api/minis/search?pageIndex=${this.state.page}`;
-
-        if (this.state.query) {
-            baseUrl += `&SearchString=${this.state.query}`;
-        }
+        var baseUrl = `https://theminiindex.com/api/creators/browse?pageIndex=${this.state.page}`;
+        //var baseUrl = `https://localhost:44386/api/creators/browse?pageIndex=${this.state.page}`;
 
         axios.get(baseUrl).then(({ data }) => {
+            console.log(data);
             if (this.state.page > 1) {
                 this.setState({
                     gridData: this.state.gridData.concat(data),
@@ -52,20 +46,6 @@ export default class BrowseLayout extends React.Component {
         });
     }
 
-    SubmitForm(newSearch) {
-        this.setState(
-            {
-                query: newSearch,
-                page: 1,
-                gridData: "",
-                loadingNewPage: true,
-            },
-            function () {
-                this.GetResults();
-            }
-        );
-    }
-
     PageUp() {
         this.setState(
             { page: parseInt(this.state.page) + 1, loadingNewPage: true },
@@ -76,7 +56,6 @@ export default class BrowseLayout extends React.Component {
     }
 
     render() {
-        const query = this.state.query;
         return (
             <>
                 <Header />
@@ -85,12 +64,6 @@ export default class BrowseLayout extends React.Component {
                     align="top"
                     justify="center"
                 >
-                    <Search
-                        w={{ base: "100%" }}
-                        query={query}
-                        onSearchChange={this.SubmitForm}
-                    />
-
                     <Flex
                         justify="center"
                         bg="primary.50"
@@ -98,7 +71,7 @@ export default class BrowseLayout extends React.Component {
                         w="100%"
                         p={8}
                     >
-                        <Gallery
+                        <CreatorGallery
                             w={{ base: "100%", lg: "80%" }}
                             gridData={this.state.gridData}
                         />

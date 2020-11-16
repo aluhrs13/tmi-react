@@ -82,7 +82,7 @@ class GalleryItem extends React.Component {
                     <Text my={1}>
                         by{" "}
                         <Link href={"/creators/view/" + this.props.creator.id}>
-                            {this.props.creator}
+                            {this.props.creator.name}
                         </Link>
                     </Text>
                 </Box>

@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 //Global Sections
 import Index from "./pages/Index";
 import Browse from "./pages/Browse";
+import BrowseCreatorsLayout from "./components/layouts/BrowseCreatorLayout";
 
 export default function App() {
     return (
@@ -14,6 +15,9 @@ export default function App() {
                 </Route>
                 <Route path="/minis">
                     <Browse />
+                </Route>
+                <Route path="/creators">
+                    <BrowseCreatorsLayout />
                 </Route>
             </Switch>
         </BrowserRouter>
