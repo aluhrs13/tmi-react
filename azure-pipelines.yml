@@ -2,29 +2,60 @@
 # Build a Node.js project that uses React.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
+ 
 trigger:
 - master
-
+ 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 
+# Set variables
+variables:
+  directory: react-azure-demo
+  stage: development
+ 
 steps:
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
-
-- task: CmdLine@2
+ 
+- script: 
+    npm install
+  displayName: 'npm install'
+  workingDirectory: $(directory)
+ 
+- script: 
+    set "REACT_APP_STAGE=$(stage)" && npm run build
+  displayName: 'npm build'
+  workingDirectory: $(directory)
+ 
+- task: CopyFiles@2
+  displayName: 'Copy files'
   inputs:
-    script: |
-      npm install
-      npm run build
-
-- task: AzureRmWebAppDeployment@4
+    sourceFolder: '$(directory)/build' 
+    Contents: '**/*'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    cleanTargetFolder: true
+ 
+- task: ArchiveFiles@2
+  displayName: 'Archive files'
   inputs:
-    ConnectionType: 'AzureRM'
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+    replaceExistingArchive: true
+ 
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Build Artifacts'
+  inputs: 
+    pathtoPublish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+ 
+- task: AzureWebApp@1
+  displayName: 'Deploy to App Service'
+  inputs:
     azureSubscription: 'Visual Studio Enterprise(16758abf-e59d-4f8d-b6cf-fa52a4cbb088)'
-    appType: 'webAppLinux'
-    WebAppName: 'tmireact'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    appName: 'tmireact'
+    appType: 'webApp'
+    package: '$(System.ArtifactsDirectory)/$(Build.BuildId).zip'
