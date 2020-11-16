@@ -48,11 +48,10 @@ steps:
   displayName: 'Publish Build Artifacts'
   inputs: 
     pathtoPublish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
- 
+
 - task: AzureWebApp@1
-  displayName: 'Deploy to App Service'
   inputs:
     azureSubscription: 'Visual Studio Enterprise(16758abf-e59d-4f8d-b6cf-fa52a4cbb088)'
+    appType: 'webAppLinux'
     appName: 'tmireact'
-    appType: 'webApp'
     package: '$(System.ArtifactsDirectory)/$(Build.BuildId).zip'
