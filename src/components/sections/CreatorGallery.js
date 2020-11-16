@@ -2,29 +2,16 @@ import React from "react";
 import {
     Box,
     Heading,
-    Text,
     Flex,
-    Image,
     Link,
     SimpleGrid,
     Skeleton,
-    Center,
     Button,
+    Divider,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
 const MotionBox = motion.custom(Box);
-
-function fixCDN(thumbnail) {
-    if (thumbnail.includes("miniindex.blob.core.windows.net")) {
-        return thumbnail.replace(
-            "miniindex.blob.core.windows.net",
-            "miniindexblobakamai.azureedge.net"
-        );
-    } else {
-        return thumbnail;
-    }
-}
 
 class GalleryItem extends React.Component {
     constructor(props) {
@@ -42,45 +29,36 @@ class GalleryItem extends React.Component {
                 shadow="md"
                 borderWidth="1px"
                 rounded="lg"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.1 }}
                 p={4}
                 alignItems="top"
             >
-                <Flex direction="row">
-                    <SimpleGrid columns="3" spacing={1}>
-                        <Image w="30px" h="30px" />
-                        <Image w="30px" h="30px" />
-                        <Image w="30px" h="30px" />
-                        <Image w="30px" h="30px" />
-                        <Image w="30px" h="30px" />
-                        <Image w="30px" h="30px" />
-                        <Image w="30px" h="30px" />
-                        <Image w="30px" h="30px" />
-                        <Image w="30px" h="30px" />
-                    </SimpleGrid>
+                <Flex direction="row" align="center">
                     <Box px={4} py={1}>
                         <Link href={"/creators/view/" + this.props.id}>
                             <Heading>{this.props.name}</Heading>
                         </Link>
                         <strong>{this.props.miniCount}</strong> minis indexed
+                        <Divider my={4} />
                         <Box>
                             {this.props.sourceSites.map((element, id) => (
-                                <Button
-                                    key={element.id}
-                                    href={element.url}
-                                    m={1}
-                                    bg={
-                                        "sourceSites." +
-                                        element.siteName.toLowerCase()
-                                    }
-                                    color={
-                                        "sourceSitesFG." +
-                                        element.siteName.toLowerCase()
-                                    }
-                                >
-                                    {element.siteName}
-                                </Button>
+                                <Link href={element.url}>
+                                    <Button
+                                        key={element.id}
+                                        Link={element.url}
+                                        m={1}
+                                        bg={
+                                            "sourceSites." +
+                                            element.siteName.toLowerCase()
+                                        }
+                                        color={
+                                            "sourceSitesFG." +
+                                            element.siteName.toLowerCase()
+                                        }
+                                    >
+                                        {element.siteName}
+                                    </Button>
+                                </Link>
                             ))}
                         </Box>
                     </Box>
@@ -105,26 +83,14 @@ function SkeletonGrid(size) {
                 alignItems="top"
             >
                 <Flex direction="row">
-                    <SimpleGrid columns="3" spacing={1}>
-                        <Skeleton w="30px" h="30px" />
-                        <Skeleton w="30px" h="30px" />
-                        <Skeleton w="30px" h="30px" />
-                        <Skeleton w="30px" h="30px" />
-                        <Skeleton w="30px" h="30px" />
-                        <Skeleton w="30px" h="30px" />
-                        <Skeleton w="30px" h="30px" />
-                        <Skeleton w="30px" h="30px" />
-                        <Skeleton w="30px" h="30px" />
-                    </SimpleGrid>
-                    <Box px={4} py={1}>
+                    <Box px={4} py={1} w="80%">
                         <Skeleton>
                             <Heading>Name</Heading>
                         </Skeleton>
                         <Skeleton># minis indexed</Skeleton>
+                        <Divider my={4} />
                         <Skeleton>
-                            <Button>Placeholder</Button>
-                            <Button>Placeholder</Button>
-                            <Button>Placeholder</Button>
+                            <Heading>Name</Heading>
                         </Skeleton>
                     </Box>
                 </Flex>
@@ -148,11 +114,11 @@ function GalleryData({ data }) {
 
 export default function Gallery(props) {
     return (
-        <Flex direction={{ base: "column", md: "row" }} w="100%">
+        <Flex direction={{ base: "column", md: "row" }} w="100%" align="center">
             <SimpleGrid
                 columns={{ base: "1", lg: "2" }}
                 spacing={8}
-                w={{ base: "100%", xl: "1800px" }}
+                w={{ base: "100%" }}
             >
                 {props.gridData === "" ? (
                     SkeletonGrid(21)
@@ -163,40 +129,3 @@ export default function Gallery(props) {
         </Flex>
     );
 }
-
-/*
-                <Link href={"/minis/view/" + this.props.id} color="black">
-                    <Center>
-                        <Skeleton
-                            h="256px"
-                            w="100%"
-                            startColor={"sourceSites." + this.sourceSite}
-                            endColor="gray.900"
-                            isLoaded={!this.state.loading}
-                        >
-                            <Image
-                                src={fixCDN(this.props.thumbnail)}
-                                className="galleryCard"
-                                alt={
-                                    "User supplied image of " + this.props.name
-                                }
-                                fit="cover"
-                                onLoad={() => {
-                                    this.setState({ loading: false });
-                                }}
-                            />
-                        </Skeleton>
-                    </Center>
-                </Link>
-                <Box mx={4} my={2}>
-                    <Heading fontSize="l" lineHeight="1">
-                        {this.props.name}
-                    </Heading>
-                    <Text my={1}>
-                        by{" "}
-                        <Link href={"/creators/view/" + this.props.creator.id}>
-                            {this.props.creator}
-                        </Link>
-                    </Text>
-                </Box>
-                */

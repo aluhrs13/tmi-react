@@ -60,29 +60,20 @@ export default class BrowseCreatorLayout extends React.Component {
             <>
                 <Header />
                 <Flex
-                    direction={{ base: "column", lg: "column" }}
-                    align="top"
                     justify="center"
+                    bg="primary.50"
+                    direction="column"
+                    w="100%"
+                    p={8}
                 >
-                    <Flex
-                        justify="center"
-                        bg="primary.50"
-                        direction="column"
-                        w="100%"
-                        p={8}
-                    >
-                        <CreatorGallery
-                            w={{ base: "100%", lg: "80%" }}
-                            gridData={this.state.gridData}
+                    <CreatorGallery gridData={this.state.gridData} />
+                    <Center>
+                        <LoadingButton
+                            isLoading={this.state.loadingNewPage}
+                            numResults={this.state.numResults}
+                            pageUp={this.PageUp}
                         />
-                        <Center>
-                            <LoadingButton
-                                isLoading={this.state.loadingNewPage}
-                                numResults={this.state.numResults}
-                                pageUp={this.PageUp}
-                            />
-                        </Center>
-                    </Flex>
+                    </Center>
                 </Flex>
                 <Footer />
             </>

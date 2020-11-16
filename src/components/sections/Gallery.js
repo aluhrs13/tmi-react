@@ -63,6 +63,8 @@ class GalleryItem extends React.Component {
                         >
                             <Image
                                 src={fixCDN(this.props.thumbnail)}
+                                h="256px"
+                                w="100%"
                                 className="galleryCard"
                                 alt={
                                     "User supplied image of " + this.props.name
@@ -75,6 +77,7 @@ class GalleryItem extends React.Component {
                         </Skeleton>
                     </Center>
                 </Link>
+                <br />
                 <Box mx={4} my={2}>
                     <Heading fontSize="l" lineHeight="1">
                         {this.props.name}
@@ -95,10 +98,8 @@ function SkeletonGrid(size) {
     return Array(size)
         .fill()
         .map((item, index) => (
-            <Box bg="white" shadow="md" borderWidth="1px" rounded="lg" w="100%">
-                <Center>
-                    <Skeleton h="256px" w="100%"></Skeleton>
-                </Center>
+            <Box bg="white" shadow="md" borderWidth="1px" rounded="lg">
+                <Skeleton h="256px" w="100%"></Skeleton>
 
                 <Skeleton mx={4} my={2}>
                     <Heading fontSize="xl" lineHeight="1">
@@ -130,11 +131,11 @@ function GalleryData({ data }) {
 
 export default function Gallery(props) {
     return (
-        <Flex direction={{ base: "column", md: "row" }} w="100%">
+        <Center>
             <SimpleGrid
                 columns={{ base: "1", sm: "2", md: "3", lg: "4", xl: "5" }}
                 spacing={8}
-                w={{ base: "100%", xl: "1800px" }}
+                w={{ base: "100%" }}
             >
                 {props.gridData === "" ? (
                     SkeletonGrid(21)
@@ -142,6 +143,6 @@ export default function Gallery(props) {
                     <GalleryData data={props.gridData} />
                 )}
             </SimpleGrid>
-        </Flex>
+        </Center>
     );
 }
