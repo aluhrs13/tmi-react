@@ -51,7 +51,7 @@ steps:
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'Visual Studio Enterprise(16758abf-e59d-4f8d-b6cf-fa52a4cbb088)'
+    azureSubscription: 'Visual Studio Ultimate with MSDN (3fc98a8d-8b5e-4228-83c4-fcce1e1a9143)'
     appType: 'webAppLinux'
     appName: 'tmireact'
     package: '$(System.ArtifactsDirectory)/$(Build.BuildId).zip'
