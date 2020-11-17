@@ -31,4 +31,4 @@ steps:
     azureSubscription: 'Visual Studio Ultimate with MSDN (3fc98a8d-8b5e-4228-83c4-fcce1e1a9143)'
     appType: 'webAppLinux'
     WebAppName: 'tmireact'
-    packageForLinux: '$(System.ArtifactsDirectory)/www.zip'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/www.zip'
