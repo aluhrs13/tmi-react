@@ -1,13 +1,8 @@
 {
     "routes": [
       {
-        "route": "/"
-      },
-      {
-        "route": "/minis"
-      },
-      {
-        "route": "/creators"
+        "route": "/*",
+        "serve": "/"
       }
     ],
     "platformErrorOverrides": [
