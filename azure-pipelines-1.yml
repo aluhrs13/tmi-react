@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 
 steps:
 - task: NodeTool@0
@@ -16,8 +16,8 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    sudo npm install
-    sudo npm run build
+    npm install
+    npm run build
   displayName: 'npm install and build'
 
 - task: ArchiveFiles@2
@@ -38,7 +38,6 @@ steps:
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'Visual Studio Ultimate with MSDN (3fc98a8d-8b5e-4228-83c4-fcce1e1a9143)'
-    appType: 'webAppLinux'
-    WebAppName: 'tmireact'
+    appType: 'webApp'
+    WebAppName: 'tmireact2'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    RuntimeStack: 'NODE|10-lts'
