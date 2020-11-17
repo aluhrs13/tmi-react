@@ -3,7 +3,6 @@ import {
     Box,
     Heading,
     Text,
-    Flex,
     Image,
     Link,
     SimpleGrid,
