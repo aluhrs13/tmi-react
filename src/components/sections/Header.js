@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "../ui/Logo";
 import LogoType from "../ui/LogoType";
 import { Box, Flex, Link, Button } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 
 const MenuItems = (props) => {
     return (
@@ -11,7 +12,8 @@ const MenuItems = (props) => {
             mr={6}
             padding={2}
             display="block"
-            href={props.href}
+            as={RouterLink}
+            to={props.href}
             color="white"
         >
             {props.children}
@@ -35,7 +37,7 @@ const Header = (props) => {
             {...props}
         >
             <Flex align="center" mr={5}>
-                <Link href="/">
+                <Link as={RouterLink} to="/">
                     <Logo height="40px" width="40px" />
                 </Link>
                 <LogoType />

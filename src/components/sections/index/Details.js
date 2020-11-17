@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Heading, Text, Flex, Link } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { Link as RouterLink } from "react-router-dom";
 
 const MotionBox = motion.custom(Box);
 
@@ -19,7 +20,7 @@ function Feature({ title, desc, img, href, ...rest }) {
             whileTap={{ scale: 0.9 }}
             {...rest}
         >
-            <Link href={href} color="black">
+            <Link as={RouterLink} to={href} color="black">
                 <div align="center">
                     <img src="/logo192.png" alt="Placeholder logo" />
                 </div>

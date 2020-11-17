@@ -10,6 +10,7 @@ import {
     Center,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { Link as RouterLink } from "react-router-dom";
 
 const MotionBox = motion.custom(Box);
 
@@ -51,7 +52,11 @@ class GalleryItem extends React.Component {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.9 }}
             >
-                <Link href={"/minis/view/" + this.props.id} color="black">
+                <Link
+                    as={RouterLink}
+                    to={"/minis/view/" + this.props.id}
+                    color="black"
+                >
                     <Center>
                         <Skeleton
                             h="256px"
@@ -83,7 +88,10 @@ class GalleryItem extends React.Component {
                     </Heading>
                     <Text my={1}>
                         by{" "}
-                        <Link href={"/creators/view/" + this.props.creator.id}>
+                        <Link
+                            as={RouterLink}
+                            to={"/creators/view/" + this.props.creator.id}
+                        >
                             {this.props.creator.name}
                         </Link>
                     </Text>

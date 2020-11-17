@@ -10,6 +10,7 @@ import {
     Divider,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { Link as RouterLink } from "react-router-dom";
 
 const MotionBox = motion.custom(Box);
 
@@ -35,14 +36,17 @@ class GalleryItem extends React.Component {
             >
                 <Flex direction="row" align="center">
                     <Box px={4} py={1}>
-                        <Link href={"/creators/view/" + this.props.id}>
+                        <Link
+                            as={RouterLink}
+                            to={"/creators/view/" + this.props.id}
+                        >
                             <Heading>{this.props.name}</Heading>
                         </Link>
                         <strong>{this.props.miniCount}</strong> minis indexed
                         <Divider my={4} />
                         <Box>
                             {this.props.sourceSites.map((element, id) => (
-                                <Link href={element.url}>
+                                <Link as={RouterLink} to={element.url}>
                                     <Button
                                         key={element.id}
                                         Link={element.url}
