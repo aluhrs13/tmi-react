@@ -41,3 +41,4 @@ steps:
     appType: 'webAppLinux'
     WebAppName: 'tmireact'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    RuntimeStack: 'NODE|10-lts'
