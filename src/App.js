@@ -10,7 +10,7 @@ export default function App() {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/">
+                <Route exact path="/">
                     <Index />
                 </Route>
                 <Route path="/minis">

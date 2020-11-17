@@ -35,7 +35,7 @@ const Header = (props) => {
             {...props}
         >
             <Flex align="center" mr={5}>
-                <Link href="/index">
+                <Link href="/">
                     <Logo height="40px" width="40px" />
                 </Link>
                 <LogoType />
