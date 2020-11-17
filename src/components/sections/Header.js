@@ -63,19 +63,23 @@ const Header = (props) => {
             >
                 <MenuItems href="/minis">Minis</MenuItems>
                 <MenuItems href="/creators">Creators</MenuItems>
+                {/*
                 <MenuItems href="/starred">Starred</MenuItems>
                 <MenuItems href="/help">Tag a Mini</MenuItems>
                 <MenuItems href="/minis/add">Add a Mini</MenuItems>
                 <MenuItems href="/feedback">Feedback</MenuItems>
+                */}
             </Box>
 
             <Box
                 display={{ sm: show ? "block" : "none", md: "block" }}
                 mt={{ base: 4, md: 0 }}
             >
-                <Button bg="primary.600" border="0px" color="white">
-                    Create account
-                </Button>
+                <Link href="">
+                    <Button bg="red.300" border="0px" color="black">
+                        Send Feedback
+                    </Button>
+                </Link>
             </Box>
         </Flex>
     );

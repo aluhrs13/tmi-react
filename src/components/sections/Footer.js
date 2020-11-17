@@ -1,11 +1,15 @@
 import React from "react";
-import { Box, Divider, Link, Text, Flex } from "@chakra-ui/react";
+//import { Box, Divider, Link, Text, Stack } from "@chakra-ui/react";
 
 export default function Footer() {
     return (
-        <Flex
+        <></>
+        /*
+        <Stack
             bg="primary.600"
             p={8}
+            spacing={100}
+            divider={<Divider orientation="vertical" />}
             direction={{ base: "column", lg: "row" }}
             color="white"
         >
@@ -47,6 +51,7 @@ export default function Footer() {
                 <br />
                 <Link>Link1</Link>
             </Box>
-        </Flex>
+        </Stack>
+        */
     );
 }

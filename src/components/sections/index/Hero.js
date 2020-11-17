@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Box, Button, Heading, Stack } from "@chakra-ui/react";
+import { Box, Button, Heading, Stack, Link } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 
 export default function Hero({
     title,
@@ -46,14 +47,16 @@ export default function Hero({
                 >
                     {subtitle}
                 </Heading>
-                <Button
-                    bg="primary.600"
-                    border="0px"
-                    color="white"
-                    to={ctaLink}
-                >
-                    {ctaText}
-                </Button>
+                <Link as={RouterLink} to="/minis">
+                    <Button
+                        bg="primary.600"
+                        border="0px"
+                        color="white"
+                        to={ctaLink}
+                    >
+                        {ctaText}
+                    </Button>
+                </Link>
             </Stack>
         </Box>
     );
@@ -70,8 +73,8 @@ Hero.propTypes = {
 Hero.defaultProps = {
     title: "Welcome to The Mini Index!",
     subtitle:
-        "This is a crowd-sourced index of various minis, terrain tiles, and scatter terrain across different websites for use with tabletop games like Dungeons and Dragons.",
+        "The Mini Index is a crowd-sourced index of various minis, terrain tiles, and scatter terrain across different websites for use with tabletop games like Dungeons and Dragons.",
     image: "https://source.unsplash.com/collection/404339/800x600",
-    ctaText: "Find the perfect mini",
+    ctaText: "Find the perfect mini, tiles, or scatter terrain ",
     ctaLink: "/minis",
 };

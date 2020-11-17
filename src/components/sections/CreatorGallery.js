@@ -46,7 +46,7 @@ class GalleryItem extends React.Component {
                         <Divider my={4} />
                         <Box>
                             {this.props.sourceSites.map((element, id) => (
-                                <Link as={RouterLink} to={element.url}>
+                                <Link href={element.url}>
                                     <Button
                                         key={element.id}
                                         Link={element.url}

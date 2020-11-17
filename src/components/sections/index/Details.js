@@ -8,7 +8,7 @@ const MotionBox = motion.custom(Box);
 function Feature({ title, desc, img, href, ...rest }) {
     return (
         <MotionBox
-            bg="white"
+            bg="primary.800"
             rounded="md"
             w={{ base: "80%", md: "100%", lg: "100%" }}
             p={5}
@@ -20,7 +20,7 @@ function Feature({ title, desc, img, href, ...rest }) {
             whileTap={{ scale: 0.9 }}
             {...rest}
         >
-            <Link as={RouterLink} to={href} color="black">
+            <Link as={RouterLink} to={href} color="primary.50">
                 <div align="center">
                     <img src="/logo192.png" alt="Placeholder logo" />
                 </div>
