@@ -10,15 +10,16 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
-- task: NodeTool@0
+- task: Npm@1
   inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+    command: 'install'
+    workingDir: 'tmi-react'
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    workingDir: 'tmi-react'
+    customCommand: 'run build'
 
 - task: ArchiveFiles@2
   inputs:
