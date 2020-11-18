@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import BrowseMinis from "./pages/BrowseMinis";
 import BrowseCreators from "./pages/BrowseCreators";
+import ViewMini from "./pages/ViewMini";
 
 export default function App() {
     return (
@@ -18,6 +19,9 @@ export default function App() {
                 </Route>
                 <Route path="/creators">
                     <BrowseCreators />
+                </Route>
+                <Route path="/viewMini">
+                    <ViewMini />
                 </Route>
             </Switch>
         </BrowserRouter>

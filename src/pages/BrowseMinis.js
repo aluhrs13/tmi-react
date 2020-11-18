@@ -44,11 +44,15 @@ export default class BrowseMinis extends React.Component {
                 this.setState({
                     gridData: this.state.gridData.concat(data),
                     numResults: data.length,
+                    loadingNewPage: false,
                 });
             } else {
-                this.setState({ gridData: data, numResults: data.length });
+                this.setState({
+                    gridData: data,
+                    numResults: data.length,
+                    loadingNewPage: false,
+                });
             }
-            this.setState({ loadingNewPage: false });
         });
     }
 

@@ -103,7 +103,13 @@ function SkeletonGrid(size) {
     return Array(size)
         .fill()
         .map((item, index) => (
-            <Box bg="white" shadow="md" borderWidth="1px" rounded="lg">
+            <Box
+                key={index}
+                bg="white"
+                shadow="md"
+                borderWidth="1px"
+                rounded="lg"
+            >
                 <Skeleton h="256px" w="100%"></Skeleton>
 
                 <Skeleton mx={4} my={2}>
