@@ -18,7 +18,7 @@ code {
 
 .hero {
     font-family: "Montserrat", sans-serif;
-    background-image: url("https://images.unsplash.com/photo-1547638382-ed227146ab88?ixlib=rb-1.2.1&auto=format&fit=crop&w=1191&q=80");
+    background-image: url("hero.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }

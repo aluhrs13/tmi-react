@@ -1,9 +1,7 @@
 import React from "react";
-import { Box, Heading, Text, Flex, Link } from "@chakra-ui/react";
-import { motion } from "framer-motion";
+import { Heading, Text, Flex, Link } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
-
-const MotionBox = motion.custom(Box);
+import { MotionBox } from "../../ui/MotionBox.js";
 
 function Feature({ title, desc, img, href, ...rest }) {
     return (

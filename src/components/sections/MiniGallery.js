@@ -9,10 +9,8 @@ import {
     Skeleton,
     Center,
 } from "@chakra-ui/react";
-import { motion } from "framer-motion";
 import { Link as RouterLink } from "react-router-dom";
-
-const MotionBox = motion.custom(Box);
+import { MotionBox } from "../ui/MotionBox.js";
 
 function fixCDN(thumbnail) {
     if (thumbnail.includes("miniindex.blob.core.windows.net")) {
@@ -136,7 +134,7 @@ function GalleryData({ data }) {
     });
 }
 
-export default function Gallery(props) {
+export default function MiniGallery(props) {
     return (
         <Center>
             <SimpleGrid
@@ -145,7 +143,7 @@ export default function Gallery(props) {
                 w={{ base: "100%" }}
             >
                 {props.gridData === "" ? (
-                    SkeletonGrid(21)
+                    SkeletonGrid(props.gallerySize)
                 ) : (
                     <GalleryData data={props.gridData} />
                 )}

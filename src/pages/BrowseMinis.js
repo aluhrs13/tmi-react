@@ -3,15 +3,15 @@ import { Flex, Center } from "@chakra-ui/react";
 import axios from "axios";
 
 //Global Sections
-import Header from "../sections/Header";
-import Footer from "../sections/Footer";
+import Header from "../components/sections/Header";
+import Footer from "../components/sections/Footer";
 
 //Local Sections
-import Gallery from "../sections/Gallery";
-import Search from "../sections/Search";
-import LoadingButton from "../ui/LoadingButton";
+import MiniGallery from "../components/sections/MiniGallery";
+import Search from "../components/ui/Search";
+import LoadingButton from "../components/ui/LoadingButton";
 
-export default class BrowseLayout extends React.Component {
+export default class BrowseMinis extends React.Component {
     constructor(props) {
         super(props);
         this.SubmitForm = this.SubmitForm.bind(this);
@@ -98,9 +98,10 @@ export default class BrowseLayout extends React.Component {
                         w="100%"
                         p={8}
                     >
-                        <Gallery
+                        <MiniGallery
                             w={{ base: "100%", lg: "80%" }}
                             gridData={this.state.gridData}
+                            gallerySize={21}
                         />
                         <Center>
                             <LoadingButton

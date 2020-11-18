@@ -9,10 +9,8 @@ import {
     Button,
     Divider,
 } from "@chakra-ui/react";
-import { motion } from "framer-motion";
 import { Link as RouterLink } from "react-router-dom";
-
-const MotionBox = motion.custom(Box);
+import { MotionBox } from "../ui/MotionBox.js";
 
 class GalleryItem extends React.Component {
     constructor(props) {

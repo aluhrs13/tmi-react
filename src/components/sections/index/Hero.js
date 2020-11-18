@@ -74,7 +74,7 @@ Hero.defaultProps = {
     title: "Welcome to The Mini Index!",
     subtitle:
         "The Mini Index is a crowd-sourced index of various minis, terrain tiles, and scatter terrain across different websites for use with tabletop games like Dungeons and Dragons.",
-    image: "https://source.unsplash.com/collection/404339/800x600",
+    image: "%PUBLIC_URL%/5.jpg",
     ctaText: "Find the perfect mini, tiles, or scatter terrain ",
     ctaLink: "/minis",
 };
