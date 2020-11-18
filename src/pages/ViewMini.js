@@ -1,5 +1,6 @@
+/* eslint-disable eqeqeq */
 import React from "react";
-import { Flex, Box, Heading, Divider } from "@chakra-ui/react";
+import { Flex, Box, Heading } from "@chakra-ui/react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 

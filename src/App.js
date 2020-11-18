@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route, useParams } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 //Global Sections
 import Index from "./pages/Index";

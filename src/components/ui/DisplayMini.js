@@ -24,6 +24,7 @@ export default class DisplayMini extends Component {
                 </Box>
                 <Flex my={8} direction={{ base: "column", md: "row" }}>
                     <Image
+                        src={this.props.thumbnail}
                         fallbackSrc="https://via.placeholder.com/150"
                         w={{ base: "80%", md: "50%" }}
                     />
@@ -31,6 +32,7 @@ export default class DisplayMini extends Component {
                     <Box m={4} w={{ base: "80%", md: "50%" }}>
                         <Box w="100%">
                             <ButtonGroup w="100%" size="lg" isAttached>
+                                <Link></Link>
                                 <Button
                                     isFullWidth
                                     mr="-px"
