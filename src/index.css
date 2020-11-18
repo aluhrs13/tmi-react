@@ -16,6 +16,10 @@ code {
     font-family: "Montserrat", sans-serif;
 }
 
+h2 {
+    font-family: "Montserrat", sans-serif !important;
+}
+
 .hero {
     font-family: "Montserrat", sans-serif;
     background-image: url("hero.jpg");

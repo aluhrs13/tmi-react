@@ -52,7 +52,7 @@ class GalleryItem extends React.Component {
             >
                 <Link
                     as={RouterLink}
-                    to={"/minis/view/" + this.props.id}
+                    to={"/minis/" + this.props.id}
                     color="black"
                 >
                     <Center>
@@ -88,7 +88,7 @@ class GalleryItem extends React.Component {
                         by{" "}
                         <Link
                             as={RouterLink}
-                            to={"/creators/view/" + this.props.creator.id}
+                            to={"/creators/" + this.props.creator.id}
                         >
                             {this.props.creator.name}
                         </Link>

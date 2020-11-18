@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, useParams } from "react-router-dom";
 
 //Global Sections
 import Index from "./pages/Index";
@@ -14,14 +14,14 @@ export default function App() {
                 <Route exact path="/">
                     <Index />
                 </Route>
+                <Route path="/minis/:id">
+                    <ViewMini />
+                </Route>
                 <Route path="/minis">
                     <BrowseMinis />
                 </Route>
                 <Route path="/creators">
                     <BrowseCreators />
-                </Route>
-                <Route path="/viewMini">
-                    <ViewMini />
                 </Route>
             </Switch>
         </BrowserRouter>
