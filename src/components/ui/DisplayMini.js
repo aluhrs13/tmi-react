@@ -30,53 +30,43 @@ export default class DisplayMini extends Component {
     }
     render() {
         return (
-            <Flex direction="column" w="80%" m={8}>
-                <Box>
+            <Flex direction="column" w={{ base: "90%", md: "80%" }}>
+                <Box m={2}>
                     <Heading size="xl">{this.props.miniData.name}</Heading>
                     <Heading size="md">
                         by{" "}
                         <Link
                             as={RouterLink}
-                            to={
-                                "/creators/view/" +
-                                this.props.miniData.creator.id
-                            }
+                            to={"/creators/" + this.props.miniData.creator.id}
                         >
                             {this.props.miniData.creator.name}
                         </Link>
                     </Heading>
                 </Box>
 
-                <Flex my={8} direction={{ base: "column", md: "row" }}>
+                <Flex
+                    direction={{ base: "column", md: "row" }}
+                    align="center"
+                    alignItems="top"
+                >
                     <Image
                         rounded="lg"
                         shadow="md"
+                        mx={4}
                         src={this.props.miniData.thumbnail}
-                        w={{ base: "80%", md: "50%" }}
+                        w={{ base: "90%", md: "50%" }}
+                        alt={"Image of " + this.props.miniData.name}
                     />
-                    <Box m={4} w={{ base: "80%", md: "50%" }}>
-                        <Box w="100%">
-                            <ButtonGroup w="100%" size="lg" mx={2} isAttached>
-                                <Button
-                                    isFullWidth
-                                    mr="-px"
-                                    bg={"sourceSites." + this.sourceSite}
-                                    color={"sourceSitesFG." + this.sourceSite}
-                                >
-                                    <Link href={this.props.miniData.link}>
-                                        View on {this.sourceSite}
-                                    </Link>
-                                </Button>
-                                {/* 
-                                <IconButton
-                                    variant="outline"
-                                    aria-label="Star mini"
-                                    colorScheme="yellow"
-                                    icon={<StarIcon />}
-                                />
-                                */}
-                            </ButtonGroup>
-                        </Box>
+                    <Box w={{ base: "90%", md: "50%" }} mx={4}>
+                        <Button
+                            isFullWidth
+                            bg={"sourceSites." + this.sourceSite}
+                            color={"sourceSitesFG." + this.sourceSite}
+                        >
+                            <Link href={this.props.miniData.link}>
+                                View on {this.sourceSite}
+                            </Link>
+                        </Button>
 
                         {this.props.miniData.status === 0 ||
                         this.props.miniData.status === 5 ? (

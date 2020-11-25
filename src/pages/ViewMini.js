@@ -109,13 +109,8 @@ class ViewMini extends React.Component {
                     ) : (
                         ""
                     )}
-                    <Flex
-                        bg="primary.50"
-                        direction="column"
-                        w="100%"
-                        p={8}
-                        align="center"
-                    >
+
+                    <Flex bg="primary.50" direction="column" align="center">
                         {this.state.selectedMini != "" &&
                         !this.state.loadingMiniData ? (
                             <DisplayMini miniData={this.state.selectedMini} />
@@ -123,8 +118,8 @@ class ViewMini extends React.Component {
                             <SkeletonMini />
                         )}
 
-                        <Box w={{ base: "100%", lg: "80%" }}>
-                            <Heading size="lg" my={3}>
+                        <Box w={"80%"} my={8} mx={4}>
+                            <Heading size="lg" m={2}>
                                 Similar Minis
                             </Heading>
 

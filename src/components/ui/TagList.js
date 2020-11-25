@@ -105,7 +105,7 @@ function listTagsByCategoryName(Tags, TagCategory, delimiter) {
                         px={4}
                         py={1}
                         variant="solid"
-                        colorScheme="primary"
+                        backgroundColor="primary.700"
                     >
                         {selectedTag.tagName}
                     </Tag>
@@ -123,7 +123,7 @@ function listTagsByCategoryName(Tags, TagCategory, delimiter) {
                         px={4}
                         py={1}
                         variant="solid"
-                        colorScheme="primary"
+                        backgroundColor="primary.700"
                     >
                         {selectedTag.tagName}
                     </Tag>
@@ -144,7 +144,7 @@ function RemovedColumn(props) {
     if (items.length > 0) {
         return (
             <>
-                <Divider m={2} borderColor="black" />
+                <Divider borderColor="black" my={4} />
                 <Heading size="md">{props.title}</Heading>
                 <Box>
                     {items.map((selectedTag, TagIndex) => {
@@ -154,7 +154,8 @@ function RemovedColumn(props) {
                                 px={4}
                                 py={1}
                                 variant="solid"
-                                colorScheme="red"
+                                backgroundColor="red.800"
+                                color="white"
                             >
                                 <TagLeftIcon as={DeleteIcon} />
                                 <TagLabel>{selectedTag}</TagLabel>
@@ -173,8 +174,8 @@ function TrioColumn(props) {
     var items = listTagsByCategoryName(props.tags, props.category, false);
 
     return (
-        <Box w={"33%"} align="center" verticalAlign="top">
-            <Heading size="md" fontWeight="bold">
+        <Box w={"33%"} align="center">
+            <Heading size="sm" fontWeight="bold">
                 {props.category}
             </Heading>
             {items.length > 0 ? (
@@ -191,8 +192,10 @@ function SoloColumn(props) {
 
     var element = (
         <>
-            <Divider m={2} borderColor="black" />
-            <Heading size="md">{props.title}</Heading>
+            <Divider borderColor="black" my={4} />
+            <Heading size="md" mt={4}>
+                {props.title}
+            </Heading>
             <Flex align="left" direction="column">
                 {props.categories.map((category, index) => {
                     var items = listTagsByCategoryName(
@@ -223,9 +226,11 @@ function SoloColumn(props) {
 function TrioCategory(props) {
     return (
         <>
-            <Divider m={2} borderColor="black" />
-            <Heading size="lg">{props.title}</Heading>
-            <Flex direction="row" align="center" verticalAlign="top">
+            <Divider borderColor="black" my={4} />
+            <Heading size="lg" mt={4}>
+                {props.title}
+            </Heading>
+            <Flex direction="row" align="center" alignItems="top">
                 <TrioColumn tags={props.tags} category={props.categories[0]} />
                 <TrioColumn tags={props.tags} category={props.categories[1]} />
                 <TrioColumn tags={props.tags} category={props.categories[2]} />
@@ -237,15 +242,7 @@ function TrioCategory(props) {
 export default class TagList extends Component {
     render() {
         return (
-            <Box m={4}>
-                {/* 
-                <Flex direction="row" align="center">
-                    <Heading size="md">Book - </Heading>
-                    {listTagsByCategoryName("SourceBook", true)}
-                    {listTagsByCategoryName("BookSection", false)}
-                </Flex>
-                */}
-
+            <Box>
                 <TrioCategory
                     tags={this.props.tags}
                     title="Tag Overview"
@@ -291,6 +288,7 @@ export default class TagList extends Component {
                             "https://theminiindex.com/Minis/Edit?id=" +
                             this.props.miniId
                         }
+                        rel="noopener"
                         target="_blank"
                     >
                         Tag this mini

@@ -39,7 +39,7 @@ const tmiTheme = {
         sourceSitesFG: {
             thingiverse: "white",
             patreon: "white",
-            myminifactory: "white",
+            myminifactory: "black",
             shapeways: "white",
             gumroad: "white",
             cults3d: "white",
