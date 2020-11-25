@@ -21,7 +21,7 @@ const TagCategoryEnum = [
     "SourceBook",
     "BookSection",
 ];
-
+/*
 const TagStatusEnum = [
     "Pending",
     "Approved",
@@ -30,7 +30,7 @@ const TagStatusEnum = [
     "Deleted",
     "Unindexed",
 ];
-
+*/
 function listTagsByCategoryName(Tags, TagCategory, delimiter) {
     return Tags.filter(
         (tag) => TagCategoryEnum[tag.category] === TagCategory
