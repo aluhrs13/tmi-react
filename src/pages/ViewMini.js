@@ -11,6 +11,7 @@ import Footer from "../components/sections/Footer";
 //Local Sections
 import MiniGallery from "../components/sections/MiniGallery";
 import DisplayMini from "../components/ui/DisplayMini";
+import SkeletonMini from "../components/ui/SkeletonMini";
 
 class ViewMini extends React.Component {
     constructor(props) {
@@ -59,7 +60,7 @@ class ViewMini extends React.Component {
                         !this.state.loadingMiniData ? (
                             <DisplayMini miniData={this.state.selectedMini} />
                         ) : (
-                            ":("
+                            <SkeletonMini />
                         )}
 
                         <Box w={{ base: "100%", lg: "80%" }}>
@@ -75,7 +76,7 @@ class ViewMini extends React.Component {
                             ) : (
                                 <MiniGallery
                                     gridData={this.state.gridData}
-                                    gallerySize={4}
+                                    gallerySize={5}
                                 />
                             )}
                         </Box>

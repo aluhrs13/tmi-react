@@ -33,7 +33,6 @@ export default class BrowseCreators extends React.Component {
         //var baseUrl = `https://localhost:44386/api/creators/browse?pageIndex=${this.state.page}`;
 
         axios.get(baseUrl).then(({ data }) => {
-            console.log(data);
             if (this.state.page > 1) {
                 this.setState({
                     gridData: this.state.gridData.concat(data),

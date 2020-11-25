@@ -8,6 +8,10 @@ import {
     Button,
     IconButton,
     ButtonGroup,
+    Alert,
+    AlertIcon,
+    AlertTitle,
+    AlertDescription,
 } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 import { Link as RouterLink } from "react-router-dom";
@@ -23,8 +27,6 @@ export default class DisplayMini extends Component {
             .split(".");
 
         this.sourceSite = urlParts[urlParts.length - 2];
-
-        console.log(this.props);
     }
     render() {
         return (
@@ -52,7 +54,7 @@ export default class DisplayMini extends Component {
                     />
                     <Box m={4} w={{ base: "80%", md: "50%" }}>
                         <Box w="100%">
-                            <ButtonGroup w="100%" size="lg" isAttached>
+                            <ButtonGroup w="100%" size="lg" mx={2} isAttached>
                                 <Button
                                     isFullWidth
                                     mr="-px"
@@ -71,6 +73,46 @@ export default class DisplayMini extends Component {
                                 />
                             </ButtonGroup>
                         </Box>
+
+                        {this.props.miniData.status === 0 ||
+                        this.props.miniData.status === 5 ? (
+                            <Alert status="warning" m={2}>
+                                <AlertIcon />
+                                <Box flex="1">
+                                    <AlertTitle>Pending Approval</AlertTitle>
+                                    <AlertDescription display="block">
+                                        This model is pending approval. If there
+                                        aren't any tags below, try adding some.
+                                        If there are, give it a few days, we
+                                        only approve a few a day.
+                                    </AlertDescription>
+                                </Box>
+                            </Alert>
+                        ) : (
+                            ""
+                        )}
+
+                        {this.props.miniData.status === 2 ||
+                        this.props.miniData.status === 4 ? (
+                            <Alert status="error" m={2}>
+                                <AlertIcon />
+                                <Box flex="1">
+                                    <AlertTitle>Rejected</AlertTitle>
+                                    <AlertDescription display="block">
+                                        This model was rejected. There's a few
+                                        reasons we reject minis, normally
+                                        because there's a duplicate or it's not
+                                        made for tabletop gaming. If you think
+                                        this is a mistake, get in touch on
+                                        Reddit, Discord, or email using the
+                                        "Feedback" buttons above.
+                                    </AlertDescription>
+                                </Box>
+                            </Alert>
+                        ) : (
+                            ""
+                        )}
+
                         <TagList tags={this.props.miniData.tags} />
                     </Box>
                 </Flex>

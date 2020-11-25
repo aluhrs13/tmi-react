@@ -1,146 +1,165 @@
 import React, { Component } from "react";
-import { Flex, Heading, Text, Box, Divider } from "@chakra-ui/react";
+import { Flex, Heading, Text, Box, Divider, Link, Tag } from "@chakra-ui/react";
+
+const TagCategoryEnum = [
+    "Gender",
+    "Race",
+    "Genre",
+    "Use",
+    "Size",
+    "Alignment",
+    "Creature Type",
+    "Creature Name",
+    "Class",
+    "Weapon",
+    "Armor",
+    "Clothing",
+    "Location",
+    "OtherDescription",
+    "Purpose",
+    "Scale",
+    "SourceBook",
+    "BookSection",
+];
+
+const TagStatusEnum = [
+    "Pending",
+    "Approved",
+    "Rejected",
+    "Ignored",
+    "Deleted",
+    "Unindexed",
+];
+
+function listTagsByCategoryName(Tags, TagCategory, delimiter) {
+    return Tags.filter(
+        (tag) => TagCategoryEnum[tag.category] === TagCategory
+    ).map((selectedTag, TagIndex) => {
+        return (
+            <Tag m={2} px={4} py={1} variant="solid" colorScheme="primary">
+                {selectedTag.tagName}
+            </Tag>
+        );
+    });
+}
+
+function TrioColumn(props) {
+    var items = listTagsByCategoryName(props.tags, props.category, false);
+
+    return (
+        <Box w={"33%"} align="center" verticalAlign="top">
+            <Heading size="md" fontWeight="bold">
+                {props.category}
+            </Heading>
+            {items.length > 0 ? (
+                items
+            ) : (
+                <Link color="primary.500">No Tag :(</Link>
+            )}
+        </Box>
+    );
+}
+
+function SoloColumn(props) {
+    var totalElementCount = 0;
+
+    var element = (
+        <>
+            <Divider m={2} borderColor="black" />
+            <Heading size="md">{props.title}</Heading>
+            <Flex align="left" direction="column">
+                {props.categories.map((category, index) => {
+                    var items = listTagsByCategoryName(
+                        props.tags,
+                        category,
+                        true
+                    );
+
+                    totalElementCount = totalElementCount + items.length;
+
+                    if (items.length > 0) {
+                        return (
+                            <Text>
+                                <strong>{category}</strong>
+                                {items}
+                            </Text>
+                        );
+                    } else {
+                        return <></>;
+                    }
+                })}
+            </Flex>
+        </>
+    );
+
+    if (totalElementCount > 0) {
+        return element;
+    } else {
+        return <></>;
+    }
+}
+
+function TrioCategory(props) {
+    return (
+        <>
+            <Divider m={2} borderColor="black" />
+            <Heading size="lg">{props.title}</Heading>
+            <Flex direction="row" align="center" verticalAlign="top">
+                <TrioColumn tags={props.tags} category={props.categories[0]} />
+                <TrioColumn tags={props.tags} category={props.categories[1]} />
+                <TrioColumn tags={props.tags} category={props.categories[2]} />
+            </Flex>
+        </>
+    );
+}
 
 export default class TagList extends Component {
-    constructor(props) {
-        super(props);
-        this.TagCategoryEnum = [
-            "Gender",
-            "Race",
-            "Genre",
-            "Use",
-            "Size",
-            "Alignment",
-            "CreatureType",
-            "CreatureName",
-            "Class",
-            "Weapon",
-            "Armor",
-            "Clothing",
-            "Location",
-            "OtherDescription",
-            "Purpose",
-            "Scale",
-            "SourceBook",
-            "BookSection",
-        ];
-
-        this.TagStatusEnum = [
-            "Pending",
-            "Approved",
-            "Rejected",
-            "Ignored",
-            "Deleted",
-            "Unindexed",
-        ];
-    }
-
-    //TODO Refactor this into a component
-    listTagsByCategoryName(TagCategory, delimiter) {
-        return this.props.tags
-            .filter((tag) => this.TagCategoryEnum[tag.category] === TagCategory)
-            .map((selectedTag, TagIndex) => {
-                return (
-                    <Text>
-                        {selectedTag.tagName + (delimiter ? ",\xa0" : "")}
-                    </Text>
-                );
-            });
-    }
-
-    //TODO - This doesn't seem to be effecient based off prints
-    //TODO - Also doesn't actually work
-    findCategoryByName(TagCategory) {
-        console.log("CALLED ONCE");
-        this.props.tags.some((tag) => {
-            console.log(this.TagCategoryEnum[tag.category] + " - HIT ONCE");
-            return this.TagCategoryEnum[tag.category] === TagCategory;
-        });
-    }
-
     render() {
         return (
             <Box m={4}>
-                <Heading size="lg">Overview</Heading>
-                <Flex direction="row" align="center" verticalAlign="top">
-                    <Box w={"33%"} align="center">
-                        <Heading size="md">Genre</Heading>
-                        {this.listTagsByCategoryName("Genre", false)}
-                    </Box>
-                    <Box w={"33%"} align="center">
-                        <Heading size="md">Use</Heading>
-                        {this.listTagsByCategoryName("Use", false)}
-                    </Box>
-                    <Box w={"33%"} align="center">
-                        <Heading size="md">Scale</Heading>
-                        {this.listTagsByCategoryName("Scale", false)}
-                    </Box>
-                </Flex>
-
+                {/* 
                 <Flex direction="row" align="center">
                     <Heading size="md">Book - </Heading>
-                    {this.listTagsByCategoryName("SourceBook", true)}
-                    {this.listTagsByCategoryName("BookSection", false)}
+                    {listTagsByCategoryName("SourceBook", true)}
+                    {listTagsByCategoryName("BookSection", false)}
                 </Flex>
+                */}
 
-                <Divider m={2} />
-                <Heading size="lg">Player Character</Heading>
-                <Flex direction="row" align="center" verticalAlign="top">
-                    <Box w={"50%"} align="center">
-                        <Heading size="md">Race</Heading>
-                        {this.listTagsByCategoryName("Race", false)}
-                    </Box>
-                    <Box w={"50%"} align="center">
-                        <Heading size="md">Gender</Heading>
-                        {this.listTagsByCategoryName("Gender", false)}
-                    </Box>
-                    <Box w={"50%"} align="center">
-                        <Heading size="md">Class</Heading>
-                        {this.listTagsByCategoryName("Class", false)}
-                    </Box>
-                </Flex>
+                <TrioCategory
+                    tags={this.props.tags}
+                    title="Tag Overview"
+                    categories={["Genre", "Use", "Scale"]}
+                />
 
-                <Divider m={2} />
-                <Heading size="lg">Creature / Monster</Heading>
-                <Flex direction="row" align="center" verticalAlign="top">
-                    <Box w={"50%"} align="center">
-                        <Heading size="md">Name</Heading>
-                        {this.listTagsByCategoryName("CreatureName", false)}
-                    </Box>
+                <TrioCategory
+                    tags={this.props.tags}
+                    title="Player Character Tags"
+                    categories={["Race", "Gender", "Class"]}
+                />
 
-                    <Box w={"50%"} align="center">
-                        <Heading size="md">Type</Heading>
-                        {this.listTagsByCategoryName("CreatureType", false)}
-                    </Box>
+                <SoloColumn
+                    tags={this.props.tags}
+                    title="Additional Model Info"
+                    categories={["Weapon", "Armor", "Clothing", "Size"]}
+                />
 
-                    <Box w={"50%"} align="center">
-                        <Heading size="md">Location</Heading>
-                        {this.listTagsByCategoryName("Location", true)}
-                    </Box>
-                </Flex>
+                <SoloColumn
+                    tags={this.props.tags}
+                    title="Suggested Uses"
+                    categories={["Purpose", "Creature Name", "Creature Type"]}
+                />
 
-                <Divider m={2} />
-                <Heading size="md">Suggested Uses</Heading>
-                <Flex direction="row" align="center">
-                    {this.listTagsByCategoryName("Purpose", true)}
-                </Flex>
+                <SoloColumn
+                    tags={this.props.tags}
+                    title="Suggested Locations"
+                    categories={["Location"]}
+                />
 
-                <Divider m={2} />
-                <Heading size="md">Additional Model Info</Heading>
-                <Flex direction="row" align="center">
-                    {this.listTagsByCategoryName("Weapon", true)}
-                    {this.listTagsByCategoryName("Armor", true)}
-                    {this.listTagsByCategoryName("Clothing", true)}
-                    {this.listTagsByCategoryName("Size", true)}
-                </Flex>
-
-                <Divider m={2} />
-                <Heading size="md">Helpful Search Tags</Heading>
-                <Flex direction="row" align="center">
-                    {this.listTagsByCategoryName(null, true)}
-                    {this.listTagsByCategoryName("OtherDescription", true)}
-                    {this.listTagsByCategoryName("Alignment", true)}
-                </Flex>
+                <SoloColumn
+                    tags={this.props.tags}
+                    title="Helpful Search Tags"
+                    categories={[null, "OtherDescription", "Alignment"]}
+                />
             </Box>
         );
     }
