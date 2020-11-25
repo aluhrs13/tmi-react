@@ -6,14 +6,11 @@ import {
     Box,
     Link,
     Button,
-    //IconButton,
-    ButtonGroup,
     Alert,
     AlertIcon,
     AlertTitle,
     AlertDescription,
 } from "@chakra-ui/react";
-//import { StarIcon } from "@chakra-ui/icons";
 import { Link as RouterLink } from "react-router-dom";
 import TagList from "../ui/TagList";
 
