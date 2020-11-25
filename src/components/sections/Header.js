@@ -63,6 +63,9 @@ const Header = (props) => {
             >
                 <MenuItems href="/minis">Minis</MenuItems>
                 <MenuItems href="/creators">Creators</MenuItems>
+                <Link href="https://theminiindex.com/Minis/Help?beta=true">
+                    RandTagCheck
+                </Link>
                 {/*
                 <MenuItems href="/starred">Starred</MenuItems>
                 <MenuItems href="/help">Tag a Mini</MenuItems>
