@@ -24,7 +24,7 @@ export default class SkeletonMini extends Component {
 
                 <Flex my={8} direction={{ base: "column", md: "row" }}>
                     <Box w={{ base: "80%", md: "50%" }}>
-                        <Skeleton>
+                        <Skeleton shadow="md" rounded="lg">
                             <Logo />
                         </Skeleton>
                     </Box>

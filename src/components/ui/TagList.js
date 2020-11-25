@@ -1,6 +1,33 @@
 import React, { Component } from "react";
-import { Flex, Heading, Text, Box, Divider, Link, Tag } from "@chakra-ui/react";
-
+import {
+    Flex,
+    Heading,
+    Text,
+    Box,
+    Divider,
+    Link,
+    Tag,
+    TagLabel,
+    TagLeftIcon,
+} from "@chakra-ui/react";
+import { TimeIcon, DeleteIcon } from "@chakra-ui/icons";
+/*
+import {
+    GiBodyHeight,
+    GiAges,
+    GiShirt,
+    GiKnapsack,
+    GiRosaShield,
+    GiBroadsword,
+    GiTreasureMap,
+    GiBookCover,
+    GiBookmarklet,
+    GiRollingDices,
+    GiWomanElfFace,
+    GiSwordman,
+    GiSwordwoman,
+} from "react-icons/gi";
+*/
 const TagCategoryEnum = [
     "Gender",
     "Race",
@@ -22,6 +49,27 @@ const TagCategoryEnum = [
     "BookSection",
 ];
 /*
+const TagCategoryIconEnum = [
+    <GiSwordwoman />,
+    <GiWomanElfFace />,
+    <GiRollingDices />,
+    "Use",
+    <GiBodyHeight />,
+    "Alignment",
+    "Creature Type",
+    "Creature Name",
+    "Class",
+    <GiBroadsword />,
+    <GiRosaShield />,
+    <GiShirt />,
+    <GiTreasureMap />,
+    <GiKnapsack />,
+    "Purpose",
+    <GiAges />,
+    <GiBookCover />,
+    <GiBookmarklet />,
+];
+
 const TagStatusEnum = [
     "Pending",
     "Approved",
@@ -35,12 +83,90 @@ function listTagsByCategoryName(Tags, TagCategory, delimiter) {
     return Tags.filter(
         (tag) => TagCategoryEnum[tag.category] === TagCategory
     ).map((selectedTag, TagIndex) => {
-        return (
-            <Tag m={2} px={4} py={1} variant="solid" colorScheme="primary">
-                {selectedTag.tagName}
-            </Tag>
-        );
+        switch (selectedTag.status) {
+            case 0:
+                return (
+                    <Tag
+                        m={2}
+                        px={4}
+                        py={1}
+                        variant="solid"
+                        colorScheme="yellow"
+                    >
+                        <TagLeftIcon as={TimeIcon} />
+                        <TagLabel>{selectedTag.tagName}</TagLabel>
+                    </Tag>
+                );
+
+            case 1:
+                return (
+                    <Tag
+                        m={2}
+                        px={4}
+                        py={1}
+                        variant="solid"
+                        colorScheme="primary"
+                    >
+                        {selectedTag.tagName}
+                    </Tag>
+                );
+
+            case 2:
+            case 3:
+            case 4:
+                return <></>;
+
+            default:
+                return (
+                    <Tag
+                        m={2}
+                        px={4}
+                        py={1}
+                        variant="solid"
+                        colorScheme="primary"
+                    >
+                        {selectedTag.tagName}
+                    </Tag>
+                );
+        }
     });
+}
+
+function RemovedColumn(props) {
+    var items = props.tags
+        .filter(
+            (tag) => tag.status === 2 || tag.status === 3 || tag.status === 4
+        )
+        .map((selectedTag, TagIndex) => {
+            return selectedTag.tagName;
+        });
+
+    if (items.length > 0) {
+        return (
+            <>
+                <Divider m={2} borderColor="black" />
+                <Heading size="md">{props.title}</Heading>
+                <Box>
+                    {items.map((selectedTag, TagIndex) => {
+                        return (
+                            <Tag
+                                m={2}
+                                px={4}
+                                py={1}
+                                variant="solid"
+                                colorScheme="red"
+                            >
+                                <TagLeftIcon as={DeleteIcon} />
+                                <TagLabel>{selectedTag}</TagLabel>
+                            </Tag>
+                        );
+                    })}
+                </Box>
+            </>
+        );
+    } else {
+        return <></>;
+    }
 }
 
 function TrioColumn(props) {
@@ -78,12 +204,7 @@ function SoloColumn(props) {
                     totalElementCount = totalElementCount + items.length;
 
                     if (items.length > 0) {
-                        return (
-                            <Text>
-                                <strong>{category}</strong>
-                                {items}
-                            </Text>
-                        );
+                        return <Text>{items}</Text>;
                     } else {
                         return <></>;
                     }
@@ -160,6 +281,21 @@ export default class TagList extends Component {
                     title="Helpful Search Tags"
                     categories={[null, "OtherDescription", "Alignment"]}
                 />
+
+                <RemovedColumn tags={this.props.tags} title="Removed Tags" />
+
+                <Box align="right">
+                    Something look wrong?&nbsp;
+                    <Link
+                        href={
+                            "https://theminiindex.com/Minis/Edit?id=" +
+                            this.props.miniId
+                        }
+                        target="_blank"
+                    >
+                        Tag this mini
+                    </Link>
+                </Box>
             </Box>
         );
     }

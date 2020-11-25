@@ -6,14 +6,14 @@ import {
     Box,
     Link,
     Button,
-    IconButton,
+    //IconButton,
     ButtonGroup,
     Alert,
     AlertIcon,
     AlertTitle,
     AlertDescription,
 } from "@chakra-ui/react";
-import { StarIcon } from "@chakra-ui/icons";
+//import { StarIcon } from "@chakra-ui/icons";
 import { Link as RouterLink } from "react-router-dom";
 import TagList from "../ui/TagList";
 
@@ -49,6 +49,8 @@ export default class DisplayMini extends Component {
 
                 <Flex my={8} direction={{ base: "column", md: "row" }}>
                     <Image
+                        rounded="lg"
+                        shadow="md"
                         src={this.props.miniData.thumbnail}
                         w={{ base: "80%", md: "50%" }}
                     />
@@ -65,12 +67,14 @@ export default class DisplayMini extends Component {
                                         View on {this.sourceSite}
                                     </Link>
                                 </Button>
+                                {/* 
                                 <IconButton
                                     variant="outline"
                                     aria-label="Star mini"
                                     colorScheme="yellow"
                                     icon={<StarIcon />}
                                 />
+                                */}
                             </ButtonGroup>
                         </Box>
 
@@ -113,7 +117,10 @@ export default class DisplayMini extends Component {
                             ""
                         )}
 
-                        <TagList tags={this.props.miniData.tags} />
+                        <TagList
+                            tags={this.props.miniData.tags}
+                            miniId={this.props.miniData.id}
+                        />
                     </Box>
                 </Flex>
             </Flex>
