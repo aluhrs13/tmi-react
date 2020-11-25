@@ -16,8 +16,9 @@ class ViewMini extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            selectedMini: "",
             gridData: "",
-            loadingNewPage: true,
+            loadingMiniData: true,
         };
     }
 
@@ -33,13 +34,15 @@ class ViewMini extends React.Component {
 
         axios.get(baseUrl).then(({ data }) => {
             this.setState({
+                selectedMini: data,
                 gridData: data.relatedMinis,
                 numResults: data.relatedMinis.length,
-                loadingNewPage: false,
+                loadingMiniData: false,
             });
         });
     }
 
+    //TODO - ":(" -> Skeleton
     render() {
         return (
             <>
@@ -52,14 +55,20 @@ class ViewMini extends React.Component {
                         p={8}
                         align="center"
                     >
-                        <DisplayMini />
+                        {this.state.selectedMini != "" &&
+                        !this.state.loadingMiniData ? (
+                            <DisplayMini miniData={this.state.selectedMini} />
+                        ) : (
+                            ":("
+                        )}
+
                         <Box w={{ base: "100%", lg: "80%" }}>
                             <Heading size="lg" my={3}>
                                 Similar Minis
                             </Heading>
 
                             {this.state.gridData == "" &&
-                            !this.state.loadingNewPage ? (
+                            !this.state.loadingMiniData ? (
                                 <Box>
                                     Sorry, couldn't find any similar minis
                                 </Box>
