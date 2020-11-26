@@ -6,6 +6,7 @@ import Index from "./pages/Index";
 import BrowseMinis from "./pages/BrowseMinis";
 import BrowseCreators from "./pages/BrowseCreators";
 import ViewMini from "./pages/ViewMini";
+import ViewCreator from "./pages/ViewCreator";
 import ScrollToTop from "./utils/scrollToTop";
 
 export default function App() {
@@ -20,6 +21,10 @@ export default function App() {
                     <Route path="/minis">
                         <BrowseMinis />
                     </Route>
+                    <Route
+                        path="/creators/:id"
+                        component={withRouter(ViewCreator)}
+                    />
                     <Route path="/creators">
                         <BrowseCreators />
                     </Route>

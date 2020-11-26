@@ -34,10 +34,7 @@ class GalleryItem extends React.Component {
             >
                 <Flex direction="row" align="center">
                     <Box px={4} py={1}>
-                        <Link
-                            as={RouterLink}
-                            to={"/creators/view/" + this.props.id}
-                        >
+                        <Link as={RouterLink} to={"/creators/" + this.props.id}>
                             <Heading>{this.props.name}</Heading>
                         </Link>
                         <strong>{this.props.miniCount}</strong> minis indexed

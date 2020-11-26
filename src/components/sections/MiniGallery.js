@@ -48,7 +48,7 @@ class GalleryItem extends React.Component {
                 borderWidth="1px"
                 rounded="lg"
                 whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.9 }}
+                whileTap={{ scale: 0.95 }}
             >
                 <Link
                     as={RouterLink}

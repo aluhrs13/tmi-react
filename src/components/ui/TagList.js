@@ -181,7 +181,7 @@ function TrioColumn(props) {
             {items.length > 0 ? (
                 items
             ) : (
-                <Link color="primary.500">No Tag :(</Link>
+                <Link color="primary.600">No Tag :(</Link>
             )}
         </Box>
     );

@@ -54,7 +54,11 @@ export default class DisplayMini extends Component {
                         w={{ base: "90%", md: "50%" }}
                         alt={"Image of " + this.props.miniData.name}
                     />
-                    <Box w={{ base: "90%", md: "50%" }} mx={4}>
+                    <Box
+                        w={{ base: "90%", md: "50%" }}
+                        mx={4}
+                        mt={{ base: 4, md: 0 }}
+                    >
                         <Button
                             isFullWidth
                             bg={"sourceSites." + this.sourceSite}
