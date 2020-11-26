@@ -196,7 +196,7 @@ function SoloColumn(props) {
                     if (items.length > 0) {
                         return <Text key={index}>{items}</Text>;
                     } else {
-                        return;
+                        return <></>;
                     }
                 })}
             </Flex>
