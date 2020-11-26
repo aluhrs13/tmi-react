@@ -12,8 +12,8 @@ import Logo from "../ui/Logo";
 export default class SkeletonMini extends Component {
     render() {
         return (
-            <Flex direction="column" w="80%" m={8}>
-                <Box w={{ base: "60%", md: "40%" }}>
+            <Flex direction="column" w={{ base: "90%", md: "80%" }}>
+                <Box m={2} w={"40%"}>
                     <Skeleton>
                         <Heading size="xl">Mini Name here</Heading>
                     </Skeleton>
@@ -22,13 +22,16 @@ export default class SkeletonMini extends Component {
                     </Skeleton>
                 </Box>
 
-                <Flex my={8} direction={{ base: "column", md: "row" }}>
+                <Flex
+                    direction={{ base: "column", md: "row" }}
+                    align="center"
+                    alignItems="top"
+                >
                     <Box w={{ base: "80%", md: "50%" }}>
                         <Skeleton shadow="md" rounded="lg">
-                            <Logo />
+                            <Logo mx={4} w={{ base: "90%", md: "50%" }} />
                         </Skeleton>
                     </Box>
-
                     <Box m={4} w={{ base: "80%", md: "50%" }}>
                         <Skeleton>
                             <Box m={4} w={{ base: "80%", md: "50%" }}>

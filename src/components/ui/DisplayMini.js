@@ -10,6 +10,7 @@ import {
     AlertIcon,
     AlertTitle,
     AlertDescription,
+    Skeleton,
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import TagList from "../ui/TagList";
@@ -24,6 +25,9 @@ export default class DisplayMini extends Component {
             .split(".");
 
         this.sourceSite = urlParts[urlParts.length - 2];
+        this.state = {
+            loading: true,
+        };
     }
     render() {
         return (
@@ -46,14 +50,27 @@ export default class DisplayMini extends Component {
                     align="center"
                     alignItems="top"
                 >
-                    <Image
+                    <Skeleton
                         rounded="lg"
                         shadow="md"
+                        startColor={"sourceSites." + this.sourceSite}
+                        endColor="gray.900"
                         mx={4}
-                        src={this.props.miniData.thumbnail}
                         w={{ base: "90%", md: "50%" }}
-                        alt={"Image of " + this.props.miniData.name}
-                    />
+                        isLoaded={!this.state.loading}
+                    >
+                        <Image
+                            rounded="lg"
+                            shadow="md"
+                            w={"100%"}
+                            src={this.props.miniData.thumbnail}
+                            alt={"Image of " + this.props.miniData.name}
+                            onLoad={() => {
+                                this.setState({ loading: false });
+                            }}
+                        />
+                    </Skeleton>
+
                     <Box
                         w={{ base: "90%", md: "50%" }}
                         mx={4}
