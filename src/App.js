@@ -8,6 +8,17 @@ import BrowseCreators from "./pages/BrowseCreators";
 import ViewMini from "./pages/ViewMini";
 import ViewCreator from "./pages/ViewCreator";
 import ScrollToTop from "./utils/scrollToTop";
+import { ApplicationInsights } from "@microsoft/applicationinsights-web";
+
+const appInsights = new ApplicationInsights({
+    config: {
+        instrumentationKey: "e27cf839-5c4e-4e9c-a424-40eb49561e72",
+        enableAutoRouteTracking: true,
+        disableFetchTracking: false,
+    },
+});
+appInsights.loadAppInsights();
+appInsights.trackPageView();
 
 export default function App() {
     return (
