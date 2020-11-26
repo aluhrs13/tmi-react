@@ -81,7 +81,9 @@ const TagStatusEnum = [
 */
 function listTagsByCategoryName(Tags, TagCategory, delimiter) {
     return Tags.filter(
-        (tag) => TagCategoryEnum[tag.category] === TagCategory
+        (tag) =>
+            TagCategoryEnum[tag.category] === TagCategory ||
+            tag.category === TagCategory
     ).map((selectedTag, TagIndex) => {
         switch (selectedTag.status) {
             case 0:

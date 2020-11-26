@@ -17,7 +17,7 @@ export default class Search extends Component {
         return (
             <Box bg="primary.100" p={8}>
                 <form onSubmit={this.handleFormSubmit}>
-                    <Heading as="label" for="search">
+                    <Heading as="label" htmlFor="search">
                         Find Minis
                     </Heading>
                     <Stack direction="row" width="100%" justify="center">
