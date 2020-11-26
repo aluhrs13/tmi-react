@@ -12,8 +12,8 @@ import Logo from "../ui/Logo";
 export default class SkeletonMini extends Component {
     render() {
         return (
-            <Flex direction="column" w={{ base: "90%", md: "80%" }}>
-                <Box m={2} w={"40%"}>
+            <Flex direction="column" w={"100%"}>
+                <Box px={{ base: 4, md: 32 }} py={8} mb={2} bg="primary.100">
                     <Skeleton>
                         <Heading size="xl">Mini Name here</Heading>
                     </Skeleton>

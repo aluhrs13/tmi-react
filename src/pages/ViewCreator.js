@@ -1,13 +1,5 @@
 import React from "react";
-import {
-    Flex,
-    Center,
-    Heading,
-    Skeleton,
-    Text,
-    Box,
-    Divider,
-} from "@chakra-ui/react";
+import { Flex, Center, Heading, Skeleton, Text, Box } from "@chakra-ui/react";
 import axios from "axios";
 
 //Global Sections
@@ -84,7 +76,7 @@ export default class ViewCreator extends React.Component {
         return (
             <>
                 <Header />
-                <Flex direction="column" bg="primary.50">
+                <Flex direction="column" bg="primary.100">
                     {this.state.creatorData !== "" ? (
                         <DisplayCreatorInfo
                             creatorInfo={this.state.creatorData}
@@ -95,7 +87,6 @@ export default class ViewCreator extends React.Component {
                                 <Heading>Name</Heading>
                                 <Text>Buttons</Text>
                             </Skeleton>
-                            <Divider mt={4} borderColor="black" />
                         </Box>
                     )}
 

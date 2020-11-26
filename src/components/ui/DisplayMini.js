@@ -31,8 +31,14 @@ export default class DisplayMini extends Component {
     }
     render() {
         return (
-            <Flex direction="column" w={{ base: "90%", md: "80%" }}>
-                <Box m={2}>
+            <Flex direction="column" w={"100%"} align="center">
+                <Box
+                    px={{ base: 4, md: 32 }}
+                    py={8}
+                    mb={2}
+                    bg="primary.100"
+                    w={"100%"}
+                >
                     <Heading size="xl">{this.props.miniData.name}</Heading>
                     <Heading size="md">
                         by{" "}
@@ -49,6 +55,7 @@ export default class DisplayMini extends Component {
                     direction={{ base: "column", md: "row" }}
                     align="center"
                     alignItems="top"
+                    w={{ base: "95%", md: "80%", xl: "60%" }}
                 >
                     <Skeleton
                         rounded="lg"

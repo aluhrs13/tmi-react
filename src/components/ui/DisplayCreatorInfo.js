@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Flex, Link, Heading, Divider, Button, Box } from "@chakra-ui/react";
+import { Flex, Link, Heading, Button, Box } from "@chakra-ui/react";
 
 export default class DisplayCreatorInfo extends Component {
     render() {
         return (
-            <Flex direction="column" mt={8} mx={16}>
+            <Flex direction="column" px={{ base: 4, md: 32 }} py={8}>
                 <Heading>{this.props.creatorInfo.name}</Heading>
                 <Box>
                     {this.props.creatorInfo.sourceSites.map((element, id) => (
@@ -26,7 +26,6 @@ export default class DisplayCreatorInfo extends Component {
                         </Link>
                     ))}
                 </Box>
-                <Divider mt={4} borderColor="black" />
             </Flex>
         );
     }

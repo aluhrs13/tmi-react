@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Center } from "@chakra-ui/react";
+import { Flex, Center, Box, Heading } from "@chakra-ui/react";
 import axios from "axios";
 
 //Global Sections
@@ -58,6 +58,9 @@ export default class BrowseCreators extends React.Component {
         return (
             <>
                 <Header />
+                <Box bg="primary.100" w={"100%"} px={16} py={8}>
+                    <Heading size="xl">All Creators</Heading>
+                </Box>
                 <Flex
                     justify="center"
                     bg="primary.50"
