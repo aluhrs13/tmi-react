@@ -40,7 +40,7 @@ class GalleryItem extends React.Component {
                         <Divider my={4} />
                         <Box>
                             {this.props.sourceSites.map((element, id) => (
-                                <Link href={element.url}>
+                                <Link href={element.url} key={id}>
                                     <Button
                                         key={element.id}
                                         m={1}
@@ -74,10 +74,9 @@ function SkeletonGrid(size) {
                 shadow="md"
                 borderWidth="1px"
                 rounded="lg"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.9 }}
                 p={4}
                 alignItems="top"
+                key={index}
             >
                 <Flex direction="row">
                     <Box px={4} py={1} w="80%">

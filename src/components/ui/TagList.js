@@ -92,6 +92,7 @@ function listTagsByCategoryName(Tags, TagCategory, delimiter) {
                         py={1}
                         variant="solid"
                         colorScheme="yellow"
+                        key={TagIndex}
                     >
                         <TagLeftIcon as={TimeIcon} />
                         <TagLabel>{selectedTag.tagName}</TagLabel>
@@ -106,6 +107,7 @@ function listTagsByCategoryName(Tags, TagCategory, delimiter) {
                         py={1}
                         variant="solid"
                         backgroundColor="primary.700"
+                        key={TagIndex}
                     >
                         {selectedTag.tagName}
                     </Tag>
@@ -124,6 +126,7 @@ function listTagsByCategoryName(Tags, TagCategory, delimiter) {
                         py={1}
                         variant="solid"
                         backgroundColor="primary.700"
+                        key={TagIndex}
                     >
                         {selectedTag.tagName}
                     </Tag>
@@ -156,6 +159,7 @@ function RemovedColumn(props) {
                                 variant="solid"
                                 backgroundColor="red.800"
                                 color="white"
+                                key={TagIndex}
                             >
                                 <TagLeftIcon as={DeleteIcon} />
                                 <TagLabel>{selectedTag}</TagLabel>
@@ -168,23 +172,6 @@ function RemovedColumn(props) {
     } else {
         return <></>;
     }
-}
-
-function TrioColumn(props) {
-    var items = listTagsByCategoryName(props.tags, props.category, false);
-
-    return (
-        <Box w={"33%"} align="center">
-            <Heading size="sm" fontWeight="bold">
-                {props.category}
-            </Heading>
-            {items.length > 0 ? (
-                items
-            ) : (
-                <Link color="primary.600">No Tag :(</Link>
-            )}
-        </Box>
-    );
 }
 
 function SoloColumn(props) {
@@ -207,9 +194,9 @@ function SoloColumn(props) {
                     totalElementCount = totalElementCount + items.length;
 
                     if (items.length > 0) {
-                        return <Text>{items}</Text>;
+                        return <Text key={index}>{items}</Text>;
                     } else {
-                        return <></>;
+                        return;
                     }
                 })}
             </Flex>
@@ -221,6 +208,23 @@ function SoloColumn(props) {
     } else {
         return <></>;
     }
+}
+
+function TrioColumn(props) {
+    var items = listTagsByCategoryName(props.tags, props.category, false);
+
+    return (
+        <Box w={"33%"} align="center">
+            <Heading size="sm" fontWeight="bold">
+                {props.category}
+            </Heading>
+            {items.length > 0 ? (
+                items
+            ) : (
+                <Link color="primary.600">No Tag :(</Link>
+            )}
+        </Box>
+    );
 }
 
 function TrioCategory(props) {

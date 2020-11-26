@@ -41,7 +41,7 @@ const tmiTheme = {
             patreon: "black",
             myminifactory: "black",
             shapeways: "black",
-            gumroad: "white",
+            gumroad: "black",
             cults3d: "white",
             wargaming3d: "white",
             duncanshadow: "white",

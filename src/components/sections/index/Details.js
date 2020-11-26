@@ -14,8 +14,6 @@ function Feature({ title, desc, img, href, ...rest }) {
             shadow="md"
             borderWidth="1px"
             align="center"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.9 }}
             {...rest}
         >
             <Link as={RouterLink} to={href} color="primary.50">

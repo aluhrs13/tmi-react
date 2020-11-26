@@ -65,7 +65,6 @@ export default class ViewCreator extends React.Component {
         //var baseUrl = `https://localhost:44386/api/creators/view?id=${this.props.match.params.id}`;
 
         axios.get(baseUrl).then(({ data }) => {
-            console.log(data);
             this.setState({
                 creatorData: data,
             });

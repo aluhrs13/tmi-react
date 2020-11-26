@@ -16,10 +16,13 @@ export default class Search extends Component {
     render() {
         return (
             <Box bg="primary.100" p={8}>
-                <Heading as="h2">Find Minis</Heading>
                 <form onSubmit={this.handleFormSubmit}>
+                    <Heading as="label" for="search">
+                        Find Minis
+                    </Heading>
                     <Stack direction="row" width="100%" justify="center">
                         <Input
+                            id="search"
                             variant="outline"
                             ref={(input) => (this.search = input)}
                             width="80%"

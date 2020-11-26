@@ -8,7 +8,7 @@ export default class DisplayCreatorInfo extends Component {
                 <Heading>{this.props.creatorInfo.name}</Heading>
                 <Box>
                     {this.props.creatorInfo.sourceSites.map((element, id) => (
-                        <Link href={element.url}>
+                        <Link href={element.url} key={id}>
                             <Button
                                 key={element.id}
                                 m={1}
