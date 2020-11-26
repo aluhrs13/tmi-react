@@ -8,6 +8,10 @@ import {
     SimpleGrid,
     Skeleton,
     Center,
+    Flex,
+    Alert,
+    AlertIcon,
+    AlertTitle,
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { MotionBox } from "../ui/MotionBox.js";
@@ -42,14 +46,7 @@ class GalleryItem extends React.Component {
 
     render() {
         return (
-            <MotionBox
-                bg="white"
-                shadow="md"
-                borderWidth="1px"
-                rounded="lg"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.95 }}
-            >
+            <MotionBox bg="white" shadow="md" borderWidth="1px" rounded="lg">
                 <Link
                     as={RouterLink}
                     to={"/minis/" + this.props.id}
@@ -79,21 +76,39 @@ class GalleryItem extends React.Component {
                         </Skeleton>
                     </Center>
                 </Link>
-                <br />
-                <Box mx={4} my={2}>
-                    <Heading fontSize="l" lineHeight="1">
-                        {this.props.name}
-                    </Heading>
-                    <Text my={1}>
-                        by{" "}
-                        <Link
-                            as={RouterLink}
-                            to={"/creators/" + this.props.creator.id}
-                        >
-                            {this.props.creator.name}
-                        </Link>
-                    </Text>
-                </Box>
+                {this.props.status === 0 || this.props.status === 5 ? (
+                    <Alert status="warning">
+                        <AlertIcon />
+                        <Box flex="1">
+                            <AlertTitle>Needs tags</AlertTitle>
+                        </Box>
+                    </Alert>
+                ) : (
+                    ""
+                )}
+                <Flex direction="row" mx={2} mb={2} mt={4} alignItems="top">
+                    <Image
+                        alt={`Mini source site is ${this.sourceSite}`}
+                        src={`https://miniindex.blob.core.windows.net/react-images/${this.sourceSite}.png`}
+                        mr={2}
+                        h="32px"
+                        w="32px"
+                    />
+                    <Flex direction="column">
+                        <Heading fontSize="l" lineHeight="1">
+                            {this.props.name}
+                        </Heading>
+                        <Text my={1}>
+                            by{" "}
+                            <Link
+                                as={RouterLink}
+                                to={"/creators/" + this.props.creator.id}
+                            >
+                                {this.props.creator.name}
+                            </Link>
+                        </Text>
+                    </Flex>
+                </Flex>
             </MotionBox>
         );
     }

@@ -28,7 +28,6 @@ class GalleryItem extends React.Component {
                 shadow="md"
                 borderWidth="1px"
                 rounded="lg"
-                whileHover={{ scale: 1.1 }}
                 p={4}
                 alignItems="top"
             >
@@ -44,7 +43,6 @@ class GalleryItem extends React.Component {
                                 <Link href={element.url}>
                                     <Button
                                         key={element.id}
-                                        Link={element.url}
                                         m={1}
                                         bg={
                                             "sourceSites." +

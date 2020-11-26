@@ -22,7 +22,7 @@ h2 {
 
 .hero {
     font-family: "Montserrat", sans-serif;
-    background-image: url("hero.jpg");
+    background-image: url("https://miniindex.blob.core.windows.net/react-images/hero.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }

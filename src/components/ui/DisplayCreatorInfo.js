@@ -11,7 +11,6 @@ export default class DisplayCreatorInfo extends Component {
                         <Link href={element.url}>
                             <Button
                                 key={element.id}
-                                Link={element.url}
                                 m={1}
                                 bg={
                                     "sourceSites." +
