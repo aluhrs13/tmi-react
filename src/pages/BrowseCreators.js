@@ -62,11 +62,10 @@ export default class BrowseCreators extends React.Component {
                     <Heading size="xl">All Creators</Heading>
                 </Box>
                 <Flex
-                    justify="center"
                     bg="primary.50"
                     direction="column"
-                    w="100%"
-                    p={8}
+                    w={"100%"}
+                    align="center"
                 >
                     <CreatorGallery gridData={this.state.gridData} />
                     <Center>

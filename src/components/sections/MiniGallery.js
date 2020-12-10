@@ -88,7 +88,7 @@ class GalleryItem extends React.Component {
                 )}
                 <Flex direction="row" mx={2} mb={2} mt={4} alignItems="top">
                     <Image
-                        alt={`Mini source site is ${this.sourceSite}`}
+                        alt={`${this.sourceSite}`}
                         src={`https://miniindex.blob.core.windows.net/react-images/${this.sourceSite}.png`}
                         mr={2}
                         h="32px"

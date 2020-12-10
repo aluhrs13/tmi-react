@@ -18,6 +18,7 @@ function Feature({ title, desc, img, href, ...rest }) {
         >
             <Link as={RouterLink} to={href} color="primary.50">
                 <div align="center">
+                    (Placholder Image)
                     <img src="/logo192.png" alt="Placeholder logo" />
                 </div>
                 <Heading fontSize="xl">{title}</Heading>
@@ -37,19 +38,19 @@ export default function Details(props) {
             <Feature
                 title="Add a Mini"
                 img=""
-                desc="The future can be even brighter but a goal without a plan is just a wish"
+                desc="Minis on TheMiniIndex are crowd-sourced from people like you from 9+ other model hosting websites. Just give us a link and it'll show up once someone makes sure it's appropriate."
                 href="/minis/add"
             />
             <Feature
                 title="Tag it"
                 img=""
-                desc="You deserve good things. With a whooping 10-15% interest rate per annum, grow your savings on your own terms with our completely automated process"
+                desc="Once your Mini is added, it needs some tags to be easily discoverable. Things like what weapon it's using or what monster it could represent help people find just what they're looking for."
                 href="/help"
             />
             <Feature
                 title="Find Minis"
                 img=""
-                desc="You deserve good things. With a whooping 10-15% interest rate per annum, grow your savings on your own terms with our completely automated process"
+                desc="Now your Mini is easy to find by much more valuable information than you could fit into the name."
                 href="/minis"
             />
         </Flex>

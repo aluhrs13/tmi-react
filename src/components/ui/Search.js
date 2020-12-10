@@ -18,7 +18,7 @@ export default class Search extends Component {
             <Box bg="primary.100" px={{ base: 4, md: 32 }} py={8}>
                 <form onSubmit={this.handleFormSubmit}>
                     <Heading size="xl" pb={4}>
-                        <label for="search">Find Minis</label>
+                        <label htmlFor="search">Find Minis</label>
                     </Heading>
                     <Stack direction="row" width="100%" justify="center">
                         <Input

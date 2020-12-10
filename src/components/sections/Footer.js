@@ -1,57 +1,28 @@
 import React from "react";
-//import { Box, Divider, Link, Text, Stack } from "@chakra-ui/react";
+import { Heading, Divider, Text, Flex } from "@chakra-ui/react";
 
 export default function Footer() {
     return (
-        <></>
-        /*
-        <Stack
-            bg="primary.600"
+        <Flex
+            bg="primary.800"
             p={8}
             spacing={100}
-            divider={<Divider orientation="vertical" />}
-            direction={{ base: "column", lg: "row" }}
+            direction="column"
             color="white"
         >
-            <Box>
-                <Text>Category</Text>
-                <br />
-                <Divider />
-                <Link>Link1</Link>
-                <br />
-                <Link>Link1</Link>
-                <br />
-                <Link>Link1</Link>
-                <br />
-                <Link>Link1</Link>
-            </Box>
-            <Divider orientation="vertical" />
-            <Box>
-                <Text>Category</Text>
-                <br />
-                <Divider />
-                <Link>Link1</Link>
-                <br />
-                <Link>Link1</Link>
-                <br />
-                <Link>Link1</Link>
-                <br />
-                <Link>Link1</Link>
-            </Box>
-            <Divider orientation="vertical" />
-            <Box align="center">
-                <Text>Category</Text>
-                <br />
-                <Divider />
-                <Link>Link1</Link>
-                <br />
-                <Link>Link1</Link>
-                <br />
-                <Link>Link1</Link>
-                <br />
-                <Link>Link1</Link>
-            </Box>
-        </Stack>
-        */
+            <Heading as="h3" size="l">
+                Welcome to TMI Beta
+            </Heading>
+            <Divider m={2} />
+            <Text>
+                Right now only the core experiences work, but some of the
+                functionality is better than the main site. This is a complete
+                re-write of the front-end, so it'll take us a while to get
+                everything. Please send any feedback (good, bad, whatever) using
+                the "Send Feedback" button at the top of the page. We'll be
+                using that feedback to decide what to bring over to the new
+                version first.
+            </Text>
+        </Flex>
     );
 }

@@ -59,10 +59,10 @@ export default class DisplayMini extends Component {
                 >
                     <Skeleton
                         rounded="lg"
-                        shadow="md"
                         startColor={"sourceSites." + this.sourceSite}
                         endColor="gray.900"
                         mx={4}
+                        mt={{ base: 4, md: 0 }}
                         w={{ base: "90%", md: "50%" }}
                         isLoaded={!this.state.loading}
                     >
