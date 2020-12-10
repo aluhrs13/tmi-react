@@ -88,7 +88,12 @@ export default class DisplayMini extends Component {
                             bg={"sourceSites." + this.sourceSite}
                             color={"sourceSitesFG." + this.sourceSite}
                         >
-                            <Link href={this.props.miniData.link}>
+                            <Link
+                                href={
+                                    "https://theminiindex.com/Minis/Redirect?beta=true&id=" +
+                                    this.props.miniData.id
+                                }
+                            >
                                 View on {this.sourceSite}
                             </Link>
                         </Button>
